@@ -1,8 +1,61 @@
 <!doctype html>
 <html lang="{{ request.locale.iso_code }}">
   <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <meta name="theme-color" content="">
+    <link rel="canonical" href="{{ canonical_url }}">
+
+    {% # favicon %}
+    {%- if settings.favicon != blank -%}
+      <link rel="icon" type="image/png" href="{{ settings.favicon | image_url: width: 32, height: 32 | image_tag  }}">
+    {%- endif -%}
+    {% # title %}
+    <title>
+      {{ page_title }}
+      {%- if current_tags %} &ndash; tagged "{{ current_tags | join: ', ' }}"{% endif -%}
+      {%- if current_page != 1 %} &ndash; Page {{ current_page }}{% endif -%}
+      {%- unless page_title contains shop.name %} &ndash; {{ shop.name }}{% endunless -%}
+    </title>
+
+    {% # description %}
+    {% if page_description %}
+      <meta name="description" content="{{ page_description | escape }}">
+    {% endif %}
+
+    {% # tailwind css output %}
     {{ 'tailwind.output.css' | asset_url | stylesheet_tag }}
+
     {{ content_for_header }}
+
+    {% # fonts %}
+    {% style %}
+      :root{
+        /* Headind fonts */
+        --font-heading-family: {{ settings.type_heading.family }}, {{ settings.type_heading.fallback_families }};
+         --font-heading-style: {{ settings.type_heading.style }};
+        --font-heading-weight: {{ settings.type_heading.weight }};
+        --font-heading-weight-bold: {{ settings.type_heading.weight | plus: 300 | at_most: 1000 }};
+
+        /* Body fonts */
+        --font-body-family: {{ settings.type_body.family }}, {{ settings.type_body.fallback_families}};
+        --font-body-style: {{ settings.type_body.style }};
+        --font-body-weight: {{ settings.type_body.weight }};
+
+      }
+
+      h1,h2,h3,h4,h5,h6{
+        font-family: var(--font-heading-family);
+      }
+      h1{
+        font-weight: var(--font-heading-weight-bold);
+      }
+      body{
+         font-family: var(--font-body-family);
+         color: red;
+      }
+    {% endstyle %}
   </head>
 
   <body>
