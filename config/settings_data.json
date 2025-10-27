@@ -12,7 +12,10 @@
   "presets": {
     "Default": {
       "type_heading": "dm_sans_n1",
-      "type_body": "dm_sans_n1"
+      "type_body": "dm_sans_n1",
+      "logo": "",
+      "logo_width": 190,
+      "favicon": ""
     }
   }
 }

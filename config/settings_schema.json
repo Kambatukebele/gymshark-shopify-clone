@@ -31,5 +31,43 @@
         "default": "dm_sans_n1"
       }
     ]
+  },
+  {
+    "name": "Logo",
+    "settings": [
+      {
+        "type": "header",
+        "content": "Logo site"
+      },
+      {
+        "type": "image_picker",
+        "id": "logo",
+        "label": "Add yout logo"
+      },
+      {
+        "type": "header",
+        "content": "Logo width"
+      },
+      {
+        "type": "range",
+        "id": "logo_width",
+        "min": 160,
+        "max": 200,
+        "label": "Logo size",
+        "step": 1,
+        "unit": "px",
+        "default": 190,
+        "info": "Logo size"
+      },
+      {
+        "type": "header",
+        "content": "Favicon"
+      },
+      {
+        "type": "image_picker",
+        "id": "favicon",
+        "label": "Favicon"
+      }
+    ]
   }
 ]
