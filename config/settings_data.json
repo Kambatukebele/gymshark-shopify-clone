@@ -8,7 +8,14 @@
  * ------------------------------------------------------------
  */
 {
-  "current": "Default",
+  "current": {
+    "type_heading": "montserrat_n5",
+    "type_body": "roboto_n4",
+    "logo": "",
+    "logo_width": 190,
+    "favicon": "",
+    "content_for_index": []
+  },
   "presets": {
     "Default": {
       "type_heading": "dm_sans_n1",
