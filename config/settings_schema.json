@@ -1,82 +1,34 @@
 [
   {
     "name": "theme_info",
-    "theme_name": "Skeleton",
+    "theme_name": "Gymshark",
     "theme_version": "0.1.0",
-    "theme_author": "Shopify",
-    "theme_documentation_url": "https://help.shopify.com/manual/online-store/themes",
-    "theme_support_url": "https://support.shopify.com/"
+    "theme_author": "Kamba Tukebele",
+    "theme_documentation_url": "https://kambatukebele/themes",
+    "theme_support_url": "https://kambatukebele/"
   },
   {
-    "name": "t:general.typography",
+    "name": "Typography",
     "settings": [
       {
         "type": "header",
-        "content": "t:general.fonts"
+        "content": "Headings"
       },
       {
         "type": "font_picker",
-        "id": "type_primary_font",
-        "default": "work_sans_n4",
-        "label": "t:general.primary"
-      },
-    ]
-  },
-  {
-    "name": "t:general.layout",
-    "settings": [
-      {
-        "type": "select",
-        "id": "max_page_width",
-        "label": "t:labels.page_width",
-        "options": [
-          {
-            "value": "90rem",
-            "label": "t:options.page_width.narrow"
-          },
-          {
-            "value": "110rem",
-            "label": "t:options.page_width.wide"
-          }
-        ],
-        "default": "90rem"
+        "id": "type_heading",
+        "label": "Heading fonts",
+        "default": "dm_sans_n1"
       },
       {
-        "type": "range",
-        "id": "min_page_margin",
-        "min": 10,
-        "max": 100,
-        "step": 1,
-        "unit": "px",
-        "label": "t:labels.page_margin",
-        "default": 20
-      }
-    ]
-  },
-  {
-    "name": "t:general.colors",
-    "settings": [
-      {
-        "type": "color",
-        "id": "background_color",
-        "default": "#FFFFFF",
-        "label": "t:labels.background"
+        "type": "header",
+        "content": "Body"
       },
       {
-        "type": "color",
-        "id": "foreground_color",
-        "default": "#333333",
-        "label": "t:labels.foreground"
-      },
-      {
-        "type": "range",
-        "id": "input_corner_radius",
-        "min": 0,
-        "max": 10,
-        "step": 1,
-        "unit": "px",
-        "label": "t:labels.input_corner_radius",
-        "default": 4
+        "type": "font_picker",
+        "id": "type_body",
+        "label": "Body fonts",
+        "default": "dm_sans_n1"
       }
     ]
   }
