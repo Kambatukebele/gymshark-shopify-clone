@@ -6,6 +6,9 @@
   </head>
 
   <body>
-    {{ content_for_layout }}
+    <main>
+      {% sections 'header-group' %}
+      {{ content_for_layout }}
+    </main>
   </body>
 </html>
