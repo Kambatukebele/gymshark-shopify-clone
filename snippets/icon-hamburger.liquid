@@ -1,0 +1,20 @@
+{% doc %}
+  Renders the icon hamburger.
+
+  @param size - {string} the size of the icon
+  @param color - {string} the color of icon
+
+  @example {% render 'icon-hamburger', size: "", color: "" %}
+{% enddoc %}
+
+<svg
+  xmlns="http://www.w3.org/2000/svg"
+  viewBox="0 0 64 64"
+  stroke-width="2.5"
+  stroke="{{ color | default: "#CACBD2" }}"
+  fill="none"
+  class="duration-300 transform transition-all"
+  style="width: {{- size -}}px; height: {{- size -}}px;"
+>
+  <path d="M7.68 32h48.64M7.68 15.97h48.64M7.68 48.03h48.64"></path>
+</svg>
