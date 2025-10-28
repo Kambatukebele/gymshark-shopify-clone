@@ -71,7 +71,7 @@
   </header>
 {% endcomment %}
 
-<div class="px-4 py-8 w-full flex flex-col items-center justify-center gap-8">
+<div class="px-4 py-8 w-full flex flex-col items-center justify-center gap-8 lg:py-16">
   <!-- upper menu -->
   <div class="w-full flex flex-col items-center justify-center gap-8 lg:hidden">
     <div class="w-full flex justify-between items-center">
@@ -98,39 +98,144 @@
     <li>Accessories</li>
   </ul>
   <!-- SubMenu -->
-  <div class="w-full flex flex-col-reverse items-center justify-center gap-8 border xl:flex-row xl:items-start">
+  <div class="w-full flex flex-col-reverse items-center justify-center gap-8 xl:flex-row xl:items-stretch">
     <!-- menu text left -->
-    <div class="w-full flex flex-col gap-4 lg:flex-row">
-      {%- for item in (1..6) -%}
-        <!-- Menu block card -->
-        <div class="w-full flex flex-col justify-center items-start gap-4">
-          <div class="w-full flex justify-between items-center">
-            <h6 class="text-sm text-black lg:uppercase lg:text-[#666666]">Trending</h6>
-            <span class="lg:hidden">{% render 'icon-arrow-down', size: '12', color: '#1b1b1b' %}</span>
-          </div>
-          <div class="flex flex-col text-[#6e6e6e] gap-2 text-sm">
-            <a href="">Lorem ipsum</a>
-            <a href="">Lorem ipsum</a>
-            <a href="">Lorem ipsum</a>
-            <a href="">Lorem ipsum</a>
-            <a href="">Lorem ipsum</a>
-            <a href="">Lorem ipsum</a>
-            <a href="">Lorem ipsum</a>
-            <a href="">Lorem ipsum</a>
-          </div>
+    <div class="w-full flex flex-col gap-4 xl:w-2/3 lg:grid lg:grid-cols-5 lg:gap-2">
+      {% comment %}
+        {%- for item in (1..6) -%}
+
+        {%- endfor -%}
+      {% endcomment %}
+      <!-- Menu block card -->
+      <div class="w-full flex flex-col justify-center items-start gap-4 lg:row-span-2 lg:justify-start">
+        <div class="w-full flex justify-between items-center">
+          <h6 class="text-sm text-black font-bold lg:uppercase lg:text-[#666666]">Trending</h6>
+          <span class="lg:hidden">{% render 'icon-arrow-down', size: '12', color: '#1b1b1b' %}</span>
         </div>
-      {%- endfor -%}
+        <div class="flex flex-col text-[#6e6e6e] gap-2 text-sm">
+          <a href="">Lorem ipsum</a>
+          <a href="">Lorem ipsum</a>
+          <a href="">Lorem ipsum</a>
+          <a href="">Lorem ipsum</a>
+          <a href="">Lorem ipsum</a>
+          <a href="">Lorem ipsum</a>
+          <a href="">Lorem ipsum</a>
+          <a href="">Lorem ipsum</a>
+        </div>
+      </div>
+      <!-- Menu block card -->
+      <div class="w-full flex flex-col justify-center items-start gap-4 lg:row-span-2 lg:justify-start">
+        <div class="w-full flex justify-between items-center">
+          <h6 class="text-sm text-black font-bold lg:uppercase lg:text-[#666666]">Trending</h6>
+          <span class="lg:hidden">{% render 'icon-arrow-down', size: '12', color: '#1b1b1b' %}</span>
+        </div>
+        <div class="flex flex-col text-[#6e6e6e] gap-2 text-sm">
+          <a href="">Lorem ipsum</a>
+          <a href="">Lorem ipsum</a>
+          <a href="">Lorem ipsum</a>
+          <a href="">Lorem ipsum</a>
+          <a href="">Lorem ipsum</a>
+          <a href="">Lorem ipsum</a>
+          <a href="">Lorem ipsum</a>
+          <a href="">Lorem ipsum</a>
+        </div>
+      </div>
+      <!-- Menu block card -->
+      <div class="w-full flex flex-col justify-center items-start gap-4 lg:justify-start">
+        <div class="w-full flex justify-between items-center">
+          <h6 class="text-sm text-black font-bold lg:uppercase lg:text-[#666666]">Trending</h6>
+          <span class="lg:hidden">{% render 'icon-arrow-down', size: '12', color: '#1b1b1b' %}</span>
+        </div>
+        <div class="flex flex-col text-[#6e6e6e] gap-2 text-sm">
+          <a href="">Lorem ipsum</a>
+          <a href="">Lorem ipsum</a>
+          <a href="">Lorem ipsum</a>
+          <a href="">Lorem ipsum</a>
+          <a href="">Lorem ipsum</a>
+          <a href="">Lorem ipsum</a>
+          <a href="">Lorem ipsum</a>
+          <a href="">Lorem ipsum</a>
+        </div>
+      </div>
+      <!-- Menu block card -->
+      <div class="w-full flex flex-col justify-center items-start gap-4 lg:justify-start">
+        <div class="w-full flex justify-between items-center">
+          <h6 class="text-sm text-black font-bold lg:uppercase lg:text-[#666666]">Trending</h6>
+          <span class="lg:hidden">{% render 'icon-arrow-down', size: '12', color: '#1b1b1b' %}</span>
+        </div>
+        <div class="flex flex-col text-[#6e6e6e] gap-2 text-sm">
+          <a href="">Lorem ipsum</a>
+          <a href="">Lorem ipsum</a>
+          <a href="">Lorem ipsum</a>
+          <a href="">Lorem ipsum</a>
+          <a href="">Lorem ipsum</a>
+          <a href="">Lorem ipsum</a>
+          <a href="">Lorem ipsum</a>
+          <a href="">Lorem ipsum</a>
+        </div>
+      </div>
+      <!-- Menu block card -->
+      <div class="w-full flex flex-col justify-center items-start gap-4 lg:justify-start">
+        <div class="w-full flex justify-between items-center">
+          <h6 class="text-sm text-black font-bold lg:uppercase lg:text-[#666666]">Trending</h6>
+          <span class="lg:hidden">{% render 'icon-arrow-down', size: '12', color: '#1b1b1b' %}</span>
+        </div>
+        <div class="flex flex-col text-[#6e6e6e] gap-2 text-sm">
+          <a href="">Lorem ipsum</a>
+          <a href="">Lorem ipsum</a>
+          <a href="">Lorem ipsum</a>
+          <a href="">Lorem ipsum</a>
+          <a href="">Lorem ipsum</a>
+          <a href="">Lorem ipsum</a>
+          <a href="">Lorem ipsum</a>
+          <a href="">Lorem ipsum</a>
+        </div>
+      </div>
+      <!-- Menu block card -->
+      <div class="w-full flex flex-col justify-center items-start gap-4 lg:col-start-3 row-start-2 lg:justify-start">
+        <div class="w-full flex justify-between items-center">
+          <h6 class="text-sm text-black font-bold lg:uppercase lg:text-[#666666]">Trending</h6>
+          <span class="lg:hidden">{% render 'icon-arrow-down', size: '12', color: '#1b1b1b' %}</span>
+        </div>
+        <div class="flex flex-col text-[#6e6e6e] gap-2 text-sm">
+          <a href="">Lorem ipsum</a>
+          <a href="">Lorem ipsum</a>
+          <a href="">Lorem ipsum</a>
+          <a href="">Lorem ipsum</a>
+          <a href="">Lorem ipsum</a>
+          <a href="">Lorem ipsum</a>
+          <a href="">Lorem ipsum</a>
+          <a href="">Lorem ipsum</a>
+        </div>
+      </div>
+      <!-- Menu block card -->
+      <div class="w-full flex flex-col justify-center items-start gap-4 lg:col-start-4 row-start-2 lg:justify-start">
+        <div class="w-full flex justify-between items-center">
+          <h6 class="text-sm text-black font-bold lg:uppercase lg:text-[#666666]">Trending</h6>
+          <span class="lg:hidden">{% render 'icon-arrow-down', size: '12', color: '#1b1b1b' %}</span>
+        </div>
+        <div class="flex flex-col text-[#6e6e6e] gap-2 text-sm">
+          <a href="">Lorem ipsum</a>
+          <a href="">Lorem ipsum</a>
+          <a href="">Lorem ipsum</a>
+          <a href="">Lorem ipsum</a>
+          <a href="">Lorem ipsum</a>
+          <a href="">Lorem ipsum</a>
+          <a href="">Lorem ipsum</a>
+          <a href="">Lorem ipsum</a>
+        </div>
+      </div>
     </div>
     <!-- menu images right -->
-    <div class="w-full lg:hidden xl:block xl:w-1/3">
-      <div class="hidden xl:block">
-        <h6 class="text-sm text-black lg:uppercase lg:text-[#666666]">Featured</h6>
+    <div class="w-full lg:hidden xl:w-1/3 xl:flex xl:flex-col xl:justify-start xl:items-start">
+      <div class="hidden xl:block w-full">
+        <h6 class="text-sm text-black font-bold lg:uppercase lg:text-[#666666] ">Featured</h6>
       </div>
-      <div class="w-full snap-x snap-mandatory flex overflow-scroll justify-start items-center gap-2 xl:snap-none xl:overflow-hidden xl:flex-col">
+      <div class="w-full snap-x snap-mandatory flex overflow-scroll justify-start items-center gap-2 xl:snap-none xl:overflow-hidden xl:flex-col xl:items-start">
         {%- for item in (1..2) -%}
           <!-- image menu card -->
-          <div class="border border-[#6e6e6e61] rounded w-[288px] h-[180px] sm:w-[608px] sm:h-[380px] md:w-[758px] md:h-[473px] xl:w-[288px] xl:h-[180px] relative snap-start grow">
-            <div class="w-[288px] h-[180px] rounded sm:w-[608px] sm:h-[380px] md:w-[758px] md:h-[473px] xl:w-[288px] xl:h-[180px]">
+          <div class="border border-[#6e6e6e61] rounded w-[288px] h-[180px] sm:w-[608px] sm:h-[380px] md:w-[758px] md:h-[473px] xl:w-[388px] xl:h-[220px] relative snap-start grow">
+            <div class="w-[288px] h-[180px] rounded sm:w-[608px] sm:h-[380px] md:w-[758px] md:h-[473px] xl:w-[388px] xl:h-[220px]">
               {{
                 'product-1'
                 | placeholder_svg_tag: 'w-full rounded h-full object-center object-cover overflow-hidden'
