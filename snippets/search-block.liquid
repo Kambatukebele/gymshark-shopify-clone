@@ -1,0 +1,13 @@
+{% doc %}
+  Renders the search block.
+
+  @param classes - {string} the classes of the button tag
+  @param classesText - {string} the classes of the span text tag
+
+  @example {% render 'search-block', classes: "" %}
+{% enddoc %}
+
+<button class="{{ classes }}">
+  <span class="block">{% render 'icon-search', size: '20', color: '#1b1b1b' %}</span>
+  <span class="{{ classesText }}">What are you looking for today...</span>
+</button>

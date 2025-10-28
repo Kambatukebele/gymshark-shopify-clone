@@ -1,0 +1,20 @@
+{% doc %}
+  Renders the icon arrow down.
+
+  @param size - {string} the size of the icon
+  @param color - {string} the color of icon
+
+  @example {% render 'icon-arrow-down', size: "", color: "" %}
+{% enddoc %}
+
+<svg
+  xmlns="http://www.w3.org/2000/svg"
+  viewBox="0 0 64 64"
+  stroke-width="2.5"
+  stroke="{{ color | default: "#CACBD2" }}"
+  fill="none"
+  class="duration-300 transform transition-all"
+  style="width: {{- size -}}px; height: {{- size -}}px;"
+>
+  <path d="M6.53 18.86l26.63 25.26 24.26-25.26"></path>
+</svg>
