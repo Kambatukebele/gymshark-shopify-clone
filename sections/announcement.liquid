@@ -1,7 +1,7 @@
 <section
   style="background-color: {{ section.settings.announcement_bg }}; color: {{ section.settings.announcement_text }}"
   id="announcement-{{ section.id }}"
-  class="w-full overflow-hidden"
+  class="w-full overflow-hidden px-4"
   second-animation="{{ section.settings.announcement_animation | times: 1000 }}"
 >
   <div
@@ -13,7 +13,7 @@
         {%- case announce.type -%}
           {%- when 'announcement-text' -%}
             <p
-              class="absolute opacity-0 translate-y-6 transition-all duration-700 text-xs hover:underline"
+              class="absolute opacity-0 text-center translate-y-6 transition-all duration-700 text-xs hover:underline"
               {{ announce.shopify_attributes }}
             >
               <a href="{{ announce.settings.announcement_url }}">
@@ -24,7 +24,7 @@
       {%- endfor -%}
     {%- else -%}
       {%- for item in (1..3) -%}
-        <p class="absolute opacity-0 translate-y-6 transition-all duration-700 text-xs hover:underline">
+        <p class="absolute opacity-0 text-center translate-y-6 transition-all duration-700 text-xs hover:underline">
           <a href="#">Free standard shipping</a>
         </p>
       {%- endfor -%}
