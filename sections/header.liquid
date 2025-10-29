@@ -1,12 +1,17 @@
-{% comment %}
-  <header class="w-full h-[76px] flex justify-center items-center">
+<section
+  id="header"
+  class="w-full relative"
+>
+  <header
+    class="w-full h-[76px] flex justify-center items-center border border-gray-100"
+  >
     <div class="container mx-auto px-4">
       <div class="w-full flex justify-between items-center">
         <div class="w-1/3">
           <!-- Menu on mobile -->
           <div class="w-20 flex justify-between items-center lg:hidden">
             <!-- Hamburger Menu -->
-            <span class="block">
+            <span id="hamburger-menu" class="block">
               {% render 'icon-hamburger', size: '28', color: '#1b1b1b' %}
             </span>
             <!-- Search icon -->
@@ -19,42 +24,39 @@
           <!-- Navigation -->
           <ul class="hidden lg:flex justify-start gap-6 text-sm">
             <!-- Link card -->
-            <li>
-              <a href="#">Women</a>
-            </li>
+            <li class="nav-desktop"><a href="#">Women</a></li>
             <!-- Link card -->
-            <li>
-              <a href="#">Men</a>
-            </li>
+            <li class="nav-desktop"><a href="#">Men</a></li>
             <!-- Link card -->
-            <li>
-              <a href="#">Accessories</a>
-            </li>
+            <li class="nav-desktop"><a href="#">Accessories</a></li>
           </ul>
         </div>
-
         <!-- Logo -->
-        <div class="w-1/3 flex justify-center items-center">
+        <a href="{{ shop.url }}" class="w-1/3 flex justify-center items-center">
           {%- if settings.logo != blank -%}
             {{- settings.logo | image_url: width: settings.logo_width | image_tag -}}
           {%- else -%}
-            <span class="text-sm font-bold">
-              {{ shop.name | upcase }}
-            </span>
+            <span class="text-sm font-bold"> {{ shop.name | upcase }} </span>
           {%- endif -%}
-        </div>
+        </a>
         <!-- Search, icons -->
         <div class="w-1/3 flex justify-end xl:">
           <div class="flex justify-end items-center gap-4 xl:gap-6">
             <!-- Search icon -->
-            <button class="hidden lg:flex justify-center items-center cursor-pointer rounded-[40px] py-3 px-4 bg-[#F5F5F5] gap-2">
+            <button
+              class="hidden lg:flex justify-center items-center cursor-pointer rounded-[40px] py-3 px-4 bg-[#F5F5F5] gap-2"
+            >
               <span class="block">{% render 'icon-search', size: '20', color: '#1b1b1b' %}</span>
               <span class="hidden 2xl:block text-sm text-[#6e6e6e]">What are you looking for today...</span>
             </button>
             <!-- icons -->
-            <div class="flex justify-between items-center w-16 lg:w-fit lg:gap-4 xl:gap-6">
+            <div
+              class="flex justify-between items-center w-16 lg:w-fit lg:gap-4 xl:gap-6"
+            >
               <!-- heart icon -->
-              <span class="hidden lg:block cursor-pointer">{% render 'icon-heart', size: '20', color: '#1b1b1b' %}</span>
+              <span class="hidden lg:block cursor-pointer">
+                {%- render 'icon-heart', size: '20', color: '#1b1b1b' -%}
+              </span>
               <!-- user icon -->
               <span class="cursor-pointer">
                 {% render 'icon-user', size: '20', color: '#1b1b1b' %}
@@ -69,203 +71,373 @@
       </div>
     </div>
   </header>
-{% endcomment %}
-
-<div class="px-4 py-8 w-full flex flex-col items-center justify-center gap-8 lg:py-16">
-  <!-- upper menu -->
-  <div class="w-full flex flex-col items-center justify-center gap-8 lg:hidden">
-    <div class="w-full flex justify-between items-center">
-      <!-- Close Menu -->
-      <span class="block">
-        {% render 'icon-close', size: '20', color: '#000' %}
-      </span>
-      <!-- heart icon -->
-      <span class="block">
-        {% render 'icon-heart', size: '20', color: '#1b1b1b' %}
-      </span>
-    </div>
-    <!-- Search icon -->
-    <!-- Search icon -->
-    {% render 'search-block',
-      classes: 'w-full flex justify-start items-center cursor-pointer rounded-[40px] py-4 px-4 bg-[#F5F5F5] gap-2',
-      classesText: 'block text-sm text-[#6e6e6e]'
-    %}
-  </div>
-  <!-- Menu -->
-  <ul class="w-full flex justify-start items-center gap-4 text-sm lg:hidden">
-    <li>Women</li>
-    <li>Men</li>
-    <li>Accessories</li>
-  </ul>
-  <!-- SubMenu -->
-  <div class="w-full flex flex-col-reverse items-center justify-center gap-8 xl:flex-row xl:items-stretch">
-    <!-- menu text left -->
-    <div class="w-full flex flex-col gap-4 xl:w-2/3 lg:grid lg:grid-cols-5 lg:gap-2">
-      {% comment %}
-        {%- for item in (1..6) -%}
-
+  <!-- Mega menu section translate-x-[1300px] -->
+  <div
+    id="mega-menu"
+    class="w-full z-10 h-fit absolute top-[76px] bg-green-300 left-0 overflow-y-scroll duration-700 ease-in-out lg:translate-x-0 lg:translate-y-20 lg:opacity-0"
+  >
+    <div
+      class="container mx-auto px-4 py-8 w-full flex flex-col items-center justify-center gap-8 lg:py-16"
+    >
+      <!-- upper menu -->
+      <div
+        class="w-full flex flex-col items-center justify-center gap-8 lg:hidden"
+      >
+        <div class="w-full flex justify-between items-center">
+          <!-- Close Menu -->
+          <span id="close-menu" class="block">
+            {% render 'icon-close', size: '20', color: '#000' %}
+          </span>
+          <!-- heart icon -->
+          <span class="block">
+            {% render 'icon-heart', size: '20', color: '#1b1b1b' %}
+          </span>
+        </div>
+        <!-- Search icon -->
+        <!-- Search icon -->
+        {% render 'search-block',
+          classes: 'w-full flex justify-start
+        items-center cursor-pointer rounded-[40px] py-4 px-4 bg-[#F5F5F5]
+        gap-2',
+          classesText: 'block text-sm text-[#6e6e6e]'
+        %}
+      </div>
+      <!-- Menu -->
+      <ul
+        class="w-full flex justify-start items-center gap-4 text-sm lg:hidden"
+      >
+        {%- for navSmall in section.settings.header_navigation.links -%}
+          <li
+            data-menu-small="{{ navSmall.title | downcase }}"
+            class="{% if forloop.first %}border-b{% endif %} py-2"
+          >
+            {{ navSmall.title -}}
+          </li>
+        {%- else -%}
+          <li data-menu-small="women" class="border-b py-2">Women</li>
+          <li data-menu-small="men" class="py-2">Men</li>
+          <li data-menu-small="accessories" class="py-2">Accessories</li>
         {%- endfor -%}
-      {% endcomment %}
-      <!-- Menu block card -->
-      <div class="w-full flex flex-col justify-center items-start gap-4 lg:row-span-2 lg:justify-start">
-        <div class="w-full flex justify-between items-center">
-          <h6 class="text-sm text-black font-bold lg:uppercase lg:text-[#666666]">Trending</h6>
-          <span class="lg:hidden">{% render 'icon-arrow-down', size: '12', color: '#1b1b1b' %}</span>
-        </div>
-        <div class="flex flex-col text-[#6e6e6e] gap-2 text-sm">
-          <a href="">Lorem ipsum</a>
-          <a href="">Lorem ipsum</a>
-          <a href="">Lorem ipsum</a>
-          <a href="">Lorem ipsum</a>
-          <a href="">Lorem ipsum</a>
-          <a href="">Lorem ipsum</a>
-          <a href="">Lorem ipsum</a>
-          <a href="">Lorem ipsum</a>
-        </div>
-      </div>
-      <!-- Menu block card -->
-      <div class="w-full flex flex-col justify-center items-start gap-4 lg:row-span-2 lg:justify-start">
-        <div class="w-full flex justify-between items-center">
-          <h6 class="text-sm text-black font-bold lg:uppercase lg:text-[#666666]">Trending</h6>
-          <span class="lg:hidden">{% render 'icon-arrow-down', size: '12', color: '#1b1b1b' %}</span>
-        </div>
-        <div class="flex flex-col text-[#6e6e6e] gap-2 text-sm">
-          <a href="">Lorem ipsum</a>
-          <a href="">Lorem ipsum</a>
-          <a href="">Lorem ipsum</a>
-          <a href="">Lorem ipsum</a>
-          <a href="">Lorem ipsum</a>
-          <a href="">Lorem ipsum</a>
-          <a href="">Lorem ipsum</a>
-          <a href="">Lorem ipsum</a>
-        </div>
-      </div>
-      <!-- Menu block card -->
-      <div class="w-full flex flex-col justify-center items-start gap-4 lg:justify-start">
-        <div class="w-full flex justify-between items-center">
-          <h6 class="text-sm text-black font-bold lg:uppercase lg:text-[#666666]">Trending</h6>
-          <span class="lg:hidden">{% render 'icon-arrow-down', size: '12', color: '#1b1b1b' %}</span>
-        </div>
-        <div class="flex flex-col text-[#6e6e6e] gap-2 text-sm">
-          <a href="">Lorem ipsum</a>
-          <a href="">Lorem ipsum</a>
-          <a href="">Lorem ipsum</a>
-          <a href="">Lorem ipsum</a>
-          <a href="">Lorem ipsum</a>
-          <a href="">Lorem ipsum</a>
-          <a href="">Lorem ipsum</a>
-          <a href="">Lorem ipsum</a>
-        </div>
-      </div>
-      <!-- Menu block card -->
-      <div class="w-full flex flex-col justify-center items-start gap-4 lg:justify-start">
-        <div class="w-full flex justify-between items-center">
-          <h6 class="text-sm text-black font-bold lg:uppercase lg:text-[#666666]">Trending</h6>
-          <span class="lg:hidden">{% render 'icon-arrow-down', size: '12', color: '#1b1b1b' %}</span>
-        </div>
-        <div class="flex flex-col text-[#6e6e6e] gap-2 text-sm">
-          <a href="">Lorem ipsum</a>
-          <a href="">Lorem ipsum</a>
-          <a href="">Lorem ipsum</a>
-          <a href="">Lorem ipsum</a>
-          <a href="">Lorem ipsum</a>
-          <a href="">Lorem ipsum</a>
-          <a href="">Lorem ipsum</a>
-          <a href="">Lorem ipsum</a>
-        </div>
-      </div>
-      <!-- Menu block card -->
-      <div class="w-full flex flex-col justify-center items-start gap-4 lg:justify-start">
-        <div class="w-full flex justify-between items-center">
-          <h6 class="text-sm text-black font-bold lg:uppercase lg:text-[#666666]">Trending</h6>
-          <span class="lg:hidden">{% render 'icon-arrow-down', size: '12', color: '#1b1b1b' %}</span>
-        </div>
-        <div class="flex flex-col text-[#6e6e6e] gap-2 text-sm">
-          <a href="">Lorem ipsum</a>
-          <a href="">Lorem ipsum</a>
-          <a href="">Lorem ipsum</a>
-          <a href="">Lorem ipsum</a>
-          <a href="">Lorem ipsum</a>
-          <a href="">Lorem ipsum</a>
-          <a href="">Lorem ipsum</a>
-          <a href="">Lorem ipsum</a>
-        </div>
-      </div>
-      <!-- Menu block card -->
-      <div class="w-full flex flex-col justify-center items-start gap-4 lg:col-start-3 row-start-2 lg:justify-start">
-        <div class="w-full flex justify-between items-center">
-          <h6 class="text-sm text-black font-bold lg:uppercase lg:text-[#666666]">Trending</h6>
-          <span class="lg:hidden">{% render 'icon-arrow-down', size: '12', color: '#1b1b1b' %}</span>
-        </div>
-        <div class="flex flex-col text-[#6e6e6e] gap-2 text-sm">
-          <a href="">Lorem ipsum</a>
-          <a href="">Lorem ipsum</a>
-          <a href="">Lorem ipsum</a>
-          <a href="">Lorem ipsum</a>
-          <a href="">Lorem ipsum</a>
-          <a href="">Lorem ipsum</a>
-          <a href="">Lorem ipsum</a>
-          <a href="">Lorem ipsum</a>
-        </div>
-      </div>
-      <!-- Menu block card -->
-      <div class="w-full flex flex-col justify-center items-start gap-4 lg:col-start-4 row-start-2 lg:justify-start">
-        <div class="w-full flex justify-between items-center">
-          <h6 class="text-sm text-black font-bold lg:uppercase lg:text-[#666666]">Trending</h6>
-          <span class="lg:hidden">{% render 'icon-arrow-down', size: '12', color: '#1b1b1b' %}</span>
-        </div>
-        <div class="flex flex-col text-[#6e6e6e] gap-2 text-sm">
-          <a href="">Lorem ipsum</a>
-          <a href="">Lorem ipsum</a>
-          <a href="">Lorem ipsum</a>
-          <a href="">Lorem ipsum</a>
-          <a href="">Lorem ipsum</a>
-          <a href="">Lorem ipsum</a>
-          <a href="">Lorem ipsum</a>
-          <a href="">Lorem ipsum</a>
-        </div>
-      </div>
-    </div>
-    <!-- menu images right -->
-    <div class="w-full lg:hidden xl:w-1/3 xl:flex xl:flex-col xl:justify-start xl:items-start">
-      <div class="hidden xl:block w-full">
-        <h6 class="text-sm text-black font-bold lg:uppercase lg:text-[#666666] ">Featured</h6>
-      </div>
-      <div class="w-full snap-x snap-mandatory flex overflow-scroll justify-start items-center gap-2 xl:snap-none xl:overflow-hidden xl:flex-col xl:items-start">
-        {%- for item in (1..2) -%}
-          <!-- image menu card -->
-          <div class="border border-[#6e6e6e61] rounded w-[288px] h-[180px] sm:w-[608px] sm:h-[380px] md:w-[758px] md:h-[473px] xl:w-[388px] xl:h-[220px] relative snap-start grow">
-            <div class="w-[288px] h-[180px] rounded sm:w-[608px] sm:h-[380px] md:w-[758px] md:h-[473px] xl:w-[388px] xl:h-[220px]">
-              {{
-                'product-1'
-                | placeholder_svg_tag: 'w-full rounded h-full object-center object-cover overflow-hidden'
-              }}
+      </ul>
+      <!-- SubMenu -->
+      <div
+        class="w-full flex flex-col-reverse items-center justify-center gap-8 xl:flex-row xl:items-stretch"
+      >
+        <!-- menu text left -->
+        <div
+          class="w-full flex flex-col gap-4 xl:w-2/3 lg:grid lg:grid-cols-5 lg:gap-2"
+        >
+          {% for navSmall in section.settings.header_navigation.links %}
+            {% if forloop.first %}
+              {%- if navSmall.levels != 0 -%}
+                {% for navSmallSubHeading in navSmall.links %}
+                  <!-- Menu block card -->
+                  <div
+                    class="w-full flex flex-col justify-center items-start gap-4 lg:row-span-2 lg:justify-start"
+                  >
+                    <div class="subHeadings w-full flex justify-between items-center">
+                      <h6
+                        class="text-sm text-black font-bold lg:uppercase lg:text-[#666666]"
+                      >
+                        {{ navSmallSubHeading.title }}
+                      </h6>
+                      <span class="subHeadingsIcons block lg:hidden">
+                        {%- render 'icon-arrow-down', size: '12', color: '#1b1b1b' -%}
+                      </span>
+                    </div>
+                    {% if navSmallSubHeading.levels != 2 %}
+                      <div
+                        class="subHeadingsBodys hidden flex-col text-[#6e6e6e] gap-2 text-sm lg:flex"
+                      >
+                        {%- for body in navSmallSubHeading.links -%}
+                          <a href="{{ body.url }}">{{ body.title }}</a>
+                        {%- endfor -%}
+                        {% comment %}
+                          <a href="">Lorem ipsum</a>
+                          <a href="">Lorem ipsum</a> <a href="">Lorem ipsum</a>
+                          <a href="">Lorem ipsum</a> <a href="">Lorem ipsum</a>
+                          <a href="">Lorem ipsum</a> <a href="">Lorem ipsum</a>
+                        {% endcomment %}
+                      </div>
+                    {% endif %}
+                  </div>
+                {% endfor %}
+              {%- endif -%}
+              {% break %}
+            {% endif %}
+          {%- else -%}
+            {% comment %} {%- for item in (1..6) -%} {%- endfor -%} {% endcomment %}
+          {% endfor %}
+          {% comment %}
+            <!-- Menu block card -->
+            <div
+              class="w-full flex flex-col justify-center items-start gap-4 lg:row-span-2 lg:justify-start"
+            >
+              <div class="subHeadings w-full flex justify-between items-center">
+                <h6
+                  class="text-sm text-black font-bold lg:uppercase lg:text-[#666666]"
+                >
+                  Trending
+                </h6>
+                <span class="subHeadingsIcons block lg:hidden">
+                  {%- render 'icon-arrow-down', size: '12', color: '#1b1b1b' -%}
+                </span>
+              </div>
+              <div
+                class="subHeadingsBodys hidden flex-col text-[#6e6e6e] gap-2 text-sm lg:flex"
+              >
+                <a href="">Lorem ipsum</a> <a href="">Lorem ipsum</a>
+                <a href="">Lorem ipsum</a> <a href="">Lorem ipsum</a>
+                <a href="">Lorem ipsum</a> <a href="">Lorem ipsum</a>
+                <a href="">Lorem ipsum</a> <a href="">Lorem ipsum</a>
+              </div>
             </div>
-            <span class="uppercase absolute bottom-2 left-2 text-xs sm:text-sm">Cosy luxe</span>
+            <!-- Menu block card -->
+            <div
+              class="w-full flex flex-col justify-center items-start gap-4 lg:row-span-2 lg:justify-start"
+            >
+              <div class="subHeadings w-full flex justify-between items-center">
+                <h6
+                  class="text-sm text-black font-bold lg:uppercase lg:text-[#666666]"
+                >
+                  Trending
+                </h6>
+                <span class="subHeadingsIcons block lg:hidden">
+                  {%- render 'icon-arrow-down', size: '12', color: '#1b1b1b' -%}
+                </span>
+              </div>
+              <div
+                class="subHeadingsBodys hidden flex-col text-[#6e6e6e] gap-2 text-sm lg:flex"
+              >
+                <a href="">Lorem ipsum</a> <a href="">Lorem ipsum</a>
+                <a href="">Lorem ipsum</a> <a href="">Lorem ipsum</a>
+                <a href="">Lorem ipsum</a> <a href="">Lorem ipsum</a>
+                <a href="">Lorem ipsum</a> <a href="">Lorem ipsum</a>
+              </div>
+            </div>
+            <!-- Menu block card -->
+            <div
+              class="w-full flex flex-col justify-center items-start gap-4 lg:justify-start"
+            >
+              <div class="subHeadings w-full flex justify-between items-center">
+                <h6
+                  class="text-sm text-black font-bold lg:uppercase lg:text-[#666666]"
+                >
+                  Trending
+                </h6>
+                <span class="subHeadingsIcons block lg:hidden">
+                  {%- render 'icon-arrow-down', size: '12', color: '#1b1b1b' -%}
+                </span>
+              </div>
+              <div
+                class="subHeadingsBodys hidden flex-col text-[#6e6e6e] gap-2 text-sm lg:flex"
+              >
+                <a href="">Lorem ipsum</a> <a href="">Lorem ipsum</a>
+                <a href="">Lorem ipsum</a> <a href="">Lorem ipsum</a>
+                <a href="">Lorem ipsum</a> <a href="">Lorem ipsum</a>
+                <a href="">Lorem ipsum</a> <a href="">Lorem ipsum</a>
+              </div>
+            </div>
+            <!-- Menu block card -->
+            <div
+              class="w-full flex flex-col justify-center items-start gap-4 lg:justify-start"
+            >
+              <div class="subHeadings w-full flex justify-between items-center">
+                <h6
+                  class="text-sm text-black font-bold lg:uppercase lg:text-[#666666]"
+                >
+                  Trending
+                </h6>
+                <span class="subHeadingsIcons block lg:hidden">
+                  {%- render 'icon-arrow-down', size: '12', color: '#1b1b1b' -%}
+                </span>
+              </div>
+              <div
+                class="subHeadingsBodys hidden flex-col text-[#6e6e6e] gap-2 text-sm lg:flex"
+              >
+                <a href="">Lorem ipsum</a> <a href="">Lorem ipsum</a>
+                <a href="">Lorem ipsum</a> <a href="">Lorem ipsum</a>
+                <a href="">Lorem ipsum</a> <a href="">Lorem ipsum</a>
+                <a href="">Lorem ipsum</a> <a href="">Lorem ipsum</a>
+              </div>
+            </div>
+            <!-- Menu block card -->
+            <div
+              class="w-full flex flex-col justify-center items-start gap-4 lg:justify-start"
+            >
+              <div class="subHeadings w-full flex justify-between items-center">
+                <h6
+                  class="text-sm text-black font-bold lg:uppercase lg:text-[#666666]"
+                >
+                  Trending
+                </h6>
+                <span class="subHeadingsIcons block lg:hidden">
+                  {%- render 'icon-arrow-down', size: '12', color: '#1b1b1b' -%}
+                </span>
+              </div>
+              <div
+                class="subHeadingsBodys hidden flex-col text-[#6e6e6e] gap-2 text-sm lg:flex"
+              >
+                <a href="">Lorem ipsum</a> <a href="">Lorem ipsum</a>
+                <a href="">Lorem ipsum</a> <a href="">Lorem ipsum</a>
+                <a href="">Lorem ipsum</a> <a href="">Lorem ipsum</a>
+                <a href="">Lorem ipsum</a> <a href="">Lorem ipsum</a>
+              </div>
+            </div>
+            <!-- Menu block card -->
+            <div
+              class="w-full flex flex-col justify-center items-start gap-4 lg:col-start-3 row-start-2 lg:justify-start"
+            >
+              <div class="subHeadings w-full flex justify-between items-center">
+                <h6
+                  class="text-sm text-black font-bold lg:uppercase lg:text-[#666666]"
+                >
+                  Trending
+                </h6>
+                <span class="subHeadingsIcons block lg:hidden">
+                  {%- render 'icon-arrow-down', size: '12', color: '#1b1b1b' -%}
+                </span>
+              </div>
+              <div
+                class="subHeadingsBodys hidden flex-col text-[#6e6e6e] gap-2 text-sm lg:flex"
+              >
+                <a href="">Lorem ipsum</a> <a href="">Lorem ipsum</a>
+                <a href="">Lorem ipsum</a> <a href="">Lorem ipsum</a>
+                <a href="">Lorem ipsum</a> <a href="">Lorem ipsum</a>
+                <a href="">Lorem ipsum</a> <a href="">Lorem ipsum</a>
+              </div>
+            </div>
+            <!-- Menu block card -->
+            <div
+              class="w-full flex flex-col justify-center items-start gap-4 lg:col-start-4 row-start-2 lg:justify-start"
+            >
+              <div class="subHeadings w-full flex justify-between items-center">
+                <h6
+                  class="text-sm text-black font-bold lg:uppercase lg:text-[#666666]"
+                >
+                  Trending
+                </h6>
+                <span class="subHeadingsIcons block lg:hidden">
+                  {%- render 'icon-arrow-down', size: '12', color: '#1b1b1b' -%}
+                </span>
+              </div>
+              <div
+                class="subHeadingsBodys hidden flex-col text-[#6e6e6e] gap-2 text-sm lg:flex"
+              >
+                <a href="">Lorem ipsum</a> <a href="">Lorem ipsum</a>
+                <a href="">Lorem ipsum</a> <a href="">Lorem ipsum</a>
+                <a href="">Lorem ipsum</a> <a href="">Lorem ipsum</a>
+                <a href="">Lorem ipsum</a> <a href="">Lorem ipsum</a>
+              </div>
+            </div>
+          {% endcomment %}
+        </div>
+        <!-- menu images right -->
+        <div
+          class="w-full lg:hidden xl:w-1/3 xl:flex xl:flex-col xl:justify-start xl:items-start xl:gap-4"
+        >
+          <div class="hidden xl:block w-full">
+            <h6
+              class="text-sm text-black font-bold lg:uppercase lg:text-[#666666]"
+            >
+              Featured
+            </h6>
           </div>
-        {%- endfor -%}
+          <div
+            class="w-full snap-x snap-mandatory flex overflow-scroll justify-start items-center gap-2 xl:snap-none xl:overflow-hidden xl:flex-col xl:items-start"
+          >
+            {%- for item in (1..2) -%}
+              <!-- image menu card -->
+              <div
+                class="border border-[#6e6e6e61] rounded w-[288px] h-[180px] sm:w-[608px] sm:h-[380px] md:w-[758px] md:h-[473px] xl:w-[388px] xl:h-[220px] relative snap-start grow"
+              >
+                <div
+                  class="w-[288px] h-[180px] rounded sm:w-[608px] sm:h-[380px] md:w-[758px] md:h-[473px] xl:w-[388px] xl:h-[220px]"
+                >
+                  {{
+                    'product-1'
+                    | placeholder_svg_tag: 'w-full rounded h-full object-center object-cover overflow-hidden'
+                  }}
+                </div>
+                <span
+                  class="uppercase absolute bottom-2 left-2 text-xs sm:text-sm"
+                  >Cosy luxe</span
+                >
+              </div>
+            {%- endfor -%}
+          </div>
+        </div>
       </div>
     </div>
   </div>
-</div>
+</section>
+
+{% javascript %}
+  const DATA_MENUS = document.querySelector('#header').getAttribute('data_menus');
+  console.log(DATA_MENUS);
+  const HAMBURGER_MENU = document.querySelector('#hamburger-menu');
+  const MEGA_MENU = document.querySelector('#mega-menu');
+  const CLOSE_MENU = document.querySelector('#close-menu');
+  const SUB_HEADINGS = document.querySelectorAll('.subHeadings');
+  const SUB_HEADINGS_ICONS = document.querySelectorAll('.subHeadingsIcons');
+  const SUB_HEADINGS_BODYS = document.querySelectorAll('.subHeadingsBodys');
+  const NAV_DESKTOP = document.querySelectorAll('.nav-desktop');
+  function showAndHideMenuOnSmallDevice() {
+    function toggleMenuOnSmallDevice(menu_icon, mega_menu, class_one, class_two) {
+      menu_icon.addEventListener('click', () => {
+        mega_menu.classList.replace(class_one, class_two);
+      });
+    }
+    toggleMenuOnSmallDevice(HAMBURGER_MENU, MEGA_MENU, 'translate-x-[1300px]', 'translate-x-0');
+    toggleMenuOnSmallDevice(CLOSE_MENU, MEGA_MENU, 'translate-x-0', 'translate-x-[1300px]');
+  }
+  showAndHideMenuOnSmallDevice();
+
+  function openAndCloseSubHeadings() {
+    SUB_HEADINGS.forEach((sub_heading, index) => {
+      sub_heading.addEventListener('click', () => {
+        if (SUB_HEADINGS_ICONS[index].classList.contains('rotate-180')) {
+          // Rotate the icon  based on its index
+          SUB_HEADINGS_ICONS[index].classList.remove('rotate-180');
+          ////Displaythe body based on its index
+          SUB_HEADINGS_BODYS[index].classList.add('hidden');
+          SUB_HEADINGS_BODYS[index].classList.remove('flex');
+          //Display the body based on its index
+        } else {
+          SUB_HEADINGS_ICONS[index].classList.add('rotate-180');
+          SUB_HEADINGS_BODYS[index].classList.remove('hidden');
+          SUB_HEADINGS_BODYS[index].classList.add('flex');
+        }
+      });
+    });
+  }
+  openAndCloseSubHeadings();
+  function showOrHideMegaMenuOnLargeDevice() {
+    NAV_DESKTOP.forEach((nav, jindex) => {
+      nav.addEventListener('mouseenter', () => {
+        MEGA_MENU.classList.replace('lg:opacity-0', 'lg:opacity-100');
+        MEGA_MENU.classList.replace('lg:translate-y-20', 'lg:translate-y-0');
+      });
+      nav.addEventListener('mouseleave', () => {
+        MEGA_MENU.classList.replace('lg:opacity-100', 'lg:opacity-0');
+        MEGA_MENU.classList.replace('lg:translate-y-0', 'lg:translate-y-20');
+      });
+    });
+  }
+  showOrHideMegaMenuOnLargeDevice();
+{% endjavascript %}
 
 {% schema %}
 {
   "name": "Header",
   "class": "header",
-  "disabled_on": {
-    "groups": ["footer"],
-    "templates": ["*"]
-  },
+  "disabled_on": { "groups": ["footer"], "templates": ["*"] },
   "limit": 1,
   "tag": "header",
-  "settings": [],
-  "presets": [
-    {
-      "name": "Header",
-      "settings": {},
-      "blocks": []
-    }
-  ]
+  "settings": [
+    { "type": "header", "content": "Navigation" },
+    { "type": "link_list", "id": "header_navigation", "label": "Menu navigation", "default": "main-menu" }
+  ],
+  "presets": [{ "name": "Header", "settings": { "header_navigation": "main-menu" }, "blocks": [] }]
 }
 {% endschema %}
