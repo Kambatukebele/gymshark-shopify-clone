@@ -88,7 +88,7 @@
   <!-- Mega menu section translate-x-[1300px] -->
   <div
     id="mega-menu"
-    class="w-full z-10 h-fit absolute top-[76px] bg-green-300 left-0 translate-x-[1300px] overflow-y-scroll duration-700 ease-in-out lg:translate-x-0 lg:translate-y-20 lg:opacity-0"
+    class="w-full z-10 h-fit absolute top-[76px] left-0 translate-x-[1300px] overflow-y-scroll duration-700 ease-in-out lg:translate-x-0 lg:translate-y-20 lg:opacity-0"
   >
     <div
       class="container mx-auto px-4 py-8 w-full flex flex-col items-center justify-center gap-8 lg:py-16"
@@ -151,49 +151,17 @@
       <div
         class="w-full flex flex-col-reverse items-center justify-center gap-8 xl:flex-row xl:items-stretch"
       >
-        <!-- menu text left -->
+        <!-- menu text left lg:grid lg:grid-cols-5 lg:gap-2 lg:row-span-2 -->
         <div
-          class="w-full flex flex-col gap-4 xl:w-2/3 lg:grid lg:grid-cols-5 lg:gap-2"
+          class="w-full flex flex-col gap-4 xl:w-2/3"
         >
           {% for nav_link in section.settings.header_navigation.links %}
             {% assign link_handle = nav_link.title | handle %}
             {% assign sub_menu = linklists[nav_link.handle] %}
             <div
-              {% comment %}  flex flex-col justify-center items-start gap-4 {% endcomment %}
               id="content-{{ link_handle }}"
-              class="
-                mega-menu-content-panel w-full flex-col justify-center items-start gap-4 lg:row-span-2 lg:justify-start
-                {% unless forloop.first %}
-                  hidden {% endunless %}
-                {% if forloop.first %}
-                  flex {% endif %}
-                lg:grid lg:grid-cols-5 lg:gap-2
-              "
+              class="mega-menu-content-panel w-full flex-col flex justify-center items-start gap-4  lg:flex-row"
             >
-              {% comment %}
-                <div class="subHeadings w-full flex justify-between items-center">
-                  <h6
-                    class="text-sm text-black font-bold lg:uppercase lg:text-[#666666]"
-                  >
-                    Trending
-                  </h6>
-                  <span class="subHeadingsIcons block lg:hidden">
-                    {%- render 'icon-arrow-down', size: '12', color: '#1b1b1b' -%}
-                  </span>
-                </div>
-                <div
-                  class="subHeadingsBodys hidden flex-col text-[#6e6e6e] gap-2 text-sm lg:flex"
-                >
-                  <a href="">Lorem ipsum</a>
-                  <a href="">Lorem ipsum</a>
-                  <a href="">Lorem ipsum</a>
-                  <a href="">Lorem ipsum</a>
-                  <a href="">Lorem ipsum</a>
-                  <a href="">Lorem ipsum</a>
-                  <a href="">Lorem ipsum</a>
-                  <a href="">Lorem ipsum</a>
-                </div>
-              {% endcomment %}
               {%- if sub_menu.links.size > 0 -%}
                 {% for sub_link in sub_menu.links %}
                   <div
@@ -432,7 +400,7 @@
 
 {% javascript %}
   // --- Global Constants ---
-  const MEGA_MENU = document.querySelector('#mega-menu'); // Defined correctly
+  const MEGA_MENU = document.querySelector('#mega-menu');
   // Mobile Menu Toggles
   const HAMBURGER_MENU = document.querySelector('#hamburger-menu');
   const CLOSE_MENU = document.querySelector('#close-menu');
@@ -440,9 +408,7 @@
   // Mobile/Desktop Elements for Tab Switching
   const NAV_DESKTOP = document.querySelectorAll('.nav-desktop');
   const MOBILE_MENU_TABS = document.querySelectorAll('.mobile-menu-tab');
-
   const MEGA_MENU_CONTENT_PANELS = document.querySelectorAll('.mega-menu-content-panel');
-  const MOBILE_CONTENT_PANELS = document.querySelectorAll('.mega-menu-content-panel');
 
   // Subheading Accordion Toggles
   const SUB_HEADINGS = document.querySelectorAll('.subHeadings');
@@ -452,7 +418,7 @@
   // Global variable to manage the closing delay
   let menuCloseTimeout;
 
-  // --- 1. Mobile Menu Open/Close ---
+  // --- 1. Mobile Menu Open/Close (No change needed here) ---
   function showAndHideMenuOnSmallDevice() {
     function toggleMenuOnSmallDevice(menu_icon, mega_menu, class_one, class_two) {
       if (!menu_icon || !mega_menu) return;
@@ -465,7 +431,7 @@
   }
   showAndHideMenuOnSmallDevice();
 
-  // --- 2. Mobile Subheading Accordion ---
+  // --- 2. Mobile Subheading Accordion (No change needed here) ---
   function openAndCloseSubHeadings() {
     SUB_HEADINGS.forEach((sub_heading, index) => {
       sub_heading.addEventListener('click', () => {
@@ -474,7 +440,6 @@
           SUB_HEADINGS_BODYS[index].classList.add('hidden');
           SUB_HEADINGS_BODYS[index].classList.remove('flex');
         } else {
-          // This was the incomplete block!
           SUB_HEADINGS_ICONS[index].classList.add('rotate-180');
           SUB_HEADINGS_BODYS[index].classList.remove('hidden');
           SUB_HEADINGS_BODYS[index].classList.add('flex');
@@ -482,33 +447,31 @@
       });
     });
   }
-  openAndCloseSubHeadings(); // Call the function
+  openAndCloseSubHeadings();
 
-  // --- 3. Mobile Tab Switching (Click) ---
-  // --- 3. Mobile Tab Switching (Click) ---
+  // --- 3. Mobile Tab Switching (Click) - ONLY TOGGLE 'hidden' ---
   function handleMobileMenuContentSwitch() {
     MOBILE_MENU_TABS.forEach((tab) => {
       tab.addEventListener('click', () => {
-        // 1. Clear all active states and hide all panels
+        // 1. Clear all active states
         MOBILE_MENU_TABS.forEach((t) => t.classList.remove('border-b', 'font-bold'));
 
-        // 2. Hide all content panels
-        MOBILE_CONTENT_PANELS.forEach((panel) => {
-          panel.style.display = 'none';
-          panel.classList.add('hidden'); // <-- ADD THIS LINE
+        // 2. Hide all content panels using 'hidden'
+        MEGA_MENU_CONTENT_PANELS.forEach((panel) => {
+          panel.classList.add('hidden');
         });
 
-        // 3. Get the unified target ID
+        // 3. Get the target ID and panel
         const targetId = tab.getAttribute('data-target-id');
         const targetPanel = document.getElementById(targetId);
 
-        // 4. Show the target panel using 'flex'
+        // 4. Show the target panel by REMOVING 'hidden'
         if (targetPanel) {
-          targetPanel.classList.remove('hidden'); // <-- ADD THIS LINE
-          targetPanel.style.display = 'flex';
+          targetPanel.classList.remove('hidden');
+          // Tailwind's responsive classes (flex and lg:grid) handle the correct display style.
         }
 
-        // 5. Apply 'active' styling to the clicked tab
+        // 5. Apply 'active' styling
         tab.classList.add('border-b', 'font-bold');
       });
     });
@@ -517,18 +480,23 @@
 
   // --- 4. Desktop Mega Menu Show/Hide and Content Switching (Hover) ---
   function showOrHideMegaMenuOnLargeDevice() {
-    // Function to SHOW the menu (clears pending close)
+    // Show/Hide Menu functions remain the same
     const showMenu = () => {
       clearTimeout(menuCloseTimeout);
       MEGA_MENU.classList.replace('lg:opacity-0', 'lg:opacity-100');
       MEGA_MENU.classList.replace('lg:translate-y-20', 'lg:translate-y-0');
+
+      // *** FIX: Ensure the non-hovered panel (the default first one) is hidden ***
+      // We rely on the hover event below to show the correct panel.
+      MEGA_MENU_CONTENT_PANELS.forEach((panel) => panel.classList.add('hidden'));
     };
 
-    // Function to HIDE the menu (starts delay before closing)
     const hideMenu = () => {
       menuCloseTimeout = setTimeout(() => {
         MEGA_MENU.classList.replace('lg:opacity-100', 'lg:opacity-0');
         MEGA_MENU.classList.replace('lg:translate-y-0', 'lg:translate-y-20');
+        // OPTIONAL: Hide all panels when the menu closes completely
+        // MEGA_MENU_CONTENT_PANELS.forEach(panel => panel.classList.add('hidden'));
       }, 50);
     };
 
@@ -539,17 +507,21 @@
 
         // Content Switching Logic:
         const targetId = nav.getAttribute('data-target-id');
+
+        // Hide all content panels using 'hidden'
         MEGA_MENU_CONTENT_PANELS.forEach((panel) => {
-          panel.style.display = 'none';
+          panel.classList.add('hidden'); // This ensures even the default first panel gets hidden
         });
+
         const targetPanel = document.getElementById(targetId);
+
+        // Show the target panel by REMOVING 'hidden'
         if (targetPanel) {
-          // Use 'grid' for desktop layout
-          targetPanel.style.display = 'grid';
+          targetPanel.classList.remove('hidden');
         }
       });
 
-      // 2. MOUSELEAVE: Starts the close timer
+      // 2. MOUSELEAVE: Starts the close timer (Needed for menu to close properly)
       nav.addEventListener('mouseleave', hideMenu);
     });
 
@@ -559,7 +531,7 @@
     // 4. MEGA_MENU MOUSELEAVE: Starts the close timer
     MEGA_MENU.addEventListener('mouseleave', hideMenu);
   }
-  showOrHideMegaMenuOnLargeDevice(); // Call the function
+  showOrHideMegaMenuOnLargeDevice();
 {% endjavascript %}
 
 {% schema %}
