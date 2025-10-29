@@ -21,14 +21,28 @@
               <span class="hidden">What are you looking for today...</span>
             </button>
           </div>
-          <!-- Navigation -->
+          <!-- Navigation Desktop -->
           <ul class="hidden lg:flex justify-start gap-6 text-sm">
-            <!-- Link card -->
-            <li class="nav-desktop"><a href="#">Women</a></li>
-            <!-- Link card -->
-            <li class="nav-desktop"><a href="#">Men</a></li>
-            <!-- Link card -->
-            <li class="nav-desktop"><a href="#">Accessories</a></li>
+            {% for nav_link in section.settings.header_navigation.links %}
+              {%- assign link_handle = nav_link.title | handle -%}
+              <li
+                class="nav-desktop main-menu-tab"
+                data-target-id="content-{{ link_handle }}"
+              >
+                <a href="#">{{ nav_link.title }}</a>
+              </li>
+            {%- else -%}
+              {% comment %}
+                <!-- Link card -->
+                <li class="nav-desktop main-menu-tab" data-target-id="content-women"><a href="#">Women</a></li>
+                <!-- Link card -->
+                <li class="nav-desktop main-menu-tab" data-target-id="content-men"><a href="#">Men</a></li>
+                <!-- Link card -->
+                <li class="nav-desktop main-menu-tab" data-target-id="content-accessories">
+                  <a href="#">Accessories</a>
+                </li>
+              {% endcomment %}
+            {% endfor %}
           </ul>
         </div>
         <!-- Logo -->
@@ -74,7 +88,7 @@
   <!-- Mega menu section translate-x-[1300px] -->
   <div
     id="mega-menu"
-    class="w-full z-10 h-fit absolute top-[76px] bg-green-300 left-0 overflow-y-scroll duration-700 ease-in-out lg:translate-x-0 lg:translate-y-20 lg:opacity-0"
+    class="w-full z-10 h-fit absolute top-[76px] bg-green-300 left-0 translate-x-[1300px] overflow-y-scroll duration-700 ease-in-out lg:translate-x-0 lg:translate-y-20 lg:opacity-0"
   >
     <div
       class="container mx-auto px-4 py-8 w-full flex flex-col items-center justify-center gap-8 lg:py-16"
@@ -102,21 +116,35 @@
           classesText: 'block text-sm text-[#6e6e6e]'
         %}
       </div>
-      <!-- Menu -->
+      <!-- Menu mobile -->
       <ul
         class="w-full flex justify-start items-center gap-4 text-sm lg:hidden"
       >
         {%- for navSmall in section.settings.header_navigation.links -%}
+          {%- assign link_handle = navSmall.title | handle -%}
           <li
-            data-menu-small="{{ navSmall.title | downcase }}"
-            class="{% if forloop.first %}border-b{% endif %} py-2"
+            data-target-id="content-{{ link_handle }}"
+            class="
+              mobile-menu-tab py-2 cursor-pointer
+              {% if forloop.first %}border-b font-bold{% endif %}
+            "
           >
             {{ navSmall.title -}}
           </li>
         {%- else -%}
-          <li data-menu-small="women" class="border-b py-2">Women</li>
-          <li data-menu-small="men" class="py-2">Men</li>
-          <li data-menu-small="accessories" class="py-2">Accessories</li>
+          <li
+            data-target-id="content-women"
+            class="mobile-menu-tab border-b py-2 font-bold cursor-pointer"
+          >
+            Women
+          </li>
+          <li data-target-id="content-men" class="mobile-menu-tab border-b py-2 font-bold cursor-pointer">Men</li>
+          <li
+            data-target-id="content-accessories"
+            class="mobile-menu-tab border-b py-2 font-bold cursor-pointer"
+          >
+            Accessories
+          </li>
         {%- endfor -%}
       </ul>
       <!-- SubMenu -->
@@ -127,47 +155,77 @@
         <div
           class="w-full flex flex-col gap-4 xl:w-2/3 lg:grid lg:grid-cols-5 lg:gap-2"
         >
-          {% for navSmall in section.settings.header_navigation.links %}
-            {% if forloop.first %}
-              {%- if navSmall.levels != 0 -%}
-                {% for navSmallSubHeading in navSmall.links %}
-                  <!-- Menu block card -->
+          {% for nav_link in section.settings.header_navigation.links %}
+            {% assign link_handle = nav_link.title | handle %}
+            {% assign sub_menu = linklists[nav_link.handle] %}
+            <div
+              {% comment %}  flex flex-col justify-center items-start gap-4 {% endcomment %}
+              id="content-{{ link_handle }}"
+              class="
+                mega-menu-content-panel w-full flex-col justify-center items-start gap-4 lg:row-span-2 lg:justify-start
+                {% unless forloop.first %}
+                  hidden {% endunless %}
+                {% if forloop.first %}
+                  flex {% endif %}
+                lg:grid lg:grid-cols-5 lg:gap-2
+              "
+            >
+              {% comment %}
+                <div class="subHeadings w-full flex justify-between items-center">
+                  <h6
+                    class="text-sm text-black font-bold lg:uppercase lg:text-[#666666]"
+                  >
+                    Trending
+                  </h6>
+                  <span class="subHeadingsIcons block lg:hidden">
+                    {%- render 'icon-arrow-down', size: '12', color: '#1b1b1b' -%}
+                  </span>
+                </div>
+                <div
+                  class="subHeadingsBodys hidden flex-col text-[#6e6e6e] gap-2 text-sm lg:flex"
+                >
+                  <a href="">Lorem ipsum</a>
+                  <a href="">Lorem ipsum</a>
+                  <a href="">Lorem ipsum</a>
+                  <a href="">Lorem ipsum</a>
+                  <a href="">Lorem ipsum</a>
+                  <a href="">Lorem ipsum</a>
+                  <a href="">Lorem ipsum</a>
+                  <a href="">Lorem ipsum</a>
+                </div>
+              {% endcomment %}
+              {%- if sub_menu.links.size > 0 -%}
+                {% for sub_link in sub_menu.links %}
                   <div
-                    class="w-full flex flex-col justify-center items-start gap-4 lg:row-span-2 lg:justify-start"
+                    class="w-full flex flex-col justify-center items-start gap-4"
                   >
                     <div class="subHeadings w-full flex justify-between items-center">
                       <h6
                         class="text-sm text-black font-bold lg:uppercase lg:text-[#666666]"
                       >
-                        {{ navSmallSubHeading.title }}
+                        {{ sub_link.title }}
                       </h6>
                       <span class="subHeadingsIcons block lg:hidden">
                         {%- render 'icon-arrow-down', size: '12', color: '#1b1b1b' -%}
                       </span>
                     </div>
-                    {% if navSmallSubHeading.levels != 2 %}
-                      <div
-                        class="subHeadingsBodys hidden flex-col text-[#6e6e6e] gap-2 text-sm lg:flex"
-                      >
-                        {%- for body in navSmallSubHeading.links -%}
-                          <a href="{{ body.url }}">{{ body.title }}</a>
-                        {%- endfor -%}
-                        {% comment %}
-                          <a href="">Lorem ipsum</a>
-                          <a href="">Lorem ipsum</a> <a href="">Lorem ipsum</a>
-                          <a href="">Lorem ipsum</a> <a href="">Lorem ipsum</a>
-                          <a href="">Lorem ipsum</a> <a href="">Lorem ipsum</a>
-                        {% endcomment %}
-                      </div>
-                    {% endif %}
+
+                    {% comment %} Sub-heading links (third level) {% endcomment %}
+                    <div
+                      class="subHeadingsBodys hidden flex-col text-[#6e6e6e] gap-2 text-sm lg:flex"
+                    >
+                      {%- for body in sub_link.links -%}
+                        <a href="{{ body.url }}">{{ body.title }}</a>
+                      {%- endfor -%}
+                    </div>
                   </div>
                 {% endfor %}
+              {% else %}
+                <p class="text-[#6e6e6e] text-sm">No sub-menu items found for {{ nav_link.title }}.</p>
               {%- endif -%}
-              {% break %}
-            {% endif %}
-          {%- else -%}
-            {% comment %} {%- for item in (1..6) -%} {%- endfor -%} {% endcomment %}
+            </div>
           {% endfor %}
+
           {% comment %}
             <!-- Menu block card -->
             <div
@@ -373,17 +431,31 @@
 </section>
 
 {% javascript %}
-  const DATA_MENUS = document.querySelector('#header').getAttribute('data_menus');
-  console.log(DATA_MENUS);
+  // --- Global Constants ---
+  const MEGA_MENU = document.querySelector('#mega-menu'); // Defined correctly
+  // Mobile Menu Toggles
   const HAMBURGER_MENU = document.querySelector('#hamburger-menu');
-  const MEGA_MENU = document.querySelector('#mega-menu');
   const CLOSE_MENU = document.querySelector('#close-menu');
+
+  // Mobile/Desktop Elements for Tab Switching
+  const NAV_DESKTOP = document.querySelectorAll('.nav-desktop');
+  const MOBILE_MENU_TABS = document.querySelectorAll('.mobile-menu-tab');
+
+  const MEGA_MENU_CONTENT_PANELS = document.querySelectorAll('.mega-menu-content-panel');
+  const MOBILE_CONTENT_PANELS = document.querySelectorAll('.mega-menu-content-panel');
+
+  // Subheading Accordion Toggles
   const SUB_HEADINGS = document.querySelectorAll('.subHeadings');
   const SUB_HEADINGS_ICONS = document.querySelectorAll('.subHeadingsIcons');
   const SUB_HEADINGS_BODYS = document.querySelectorAll('.subHeadingsBodys');
-  const NAV_DESKTOP = document.querySelectorAll('.nav-desktop');
+
+  // Global variable to manage the closing delay
+  let menuCloseTimeout;
+
+  // --- 1. Mobile Menu Open/Close ---
   function showAndHideMenuOnSmallDevice() {
     function toggleMenuOnSmallDevice(menu_icon, mega_menu, class_one, class_two) {
+      if (!menu_icon || !mega_menu) return;
       menu_icon.addEventListener('click', () => {
         mega_menu.classList.replace(class_one, class_two);
       });
@@ -393,17 +465,16 @@
   }
   showAndHideMenuOnSmallDevice();
 
+  // --- 2. Mobile Subheading Accordion ---
   function openAndCloseSubHeadings() {
     SUB_HEADINGS.forEach((sub_heading, index) => {
       sub_heading.addEventListener('click', () => {
         if (SUB_HEADINGS_ICONS[index].classList.contains('rotate-180')) {
-          // Rotate the icon  based on its index
           SUB_HEADINGS_ICONS[index].classList.remove('rotate-180');
-          ////Displaythe body based on its index
           SUB_HEADINGS_BODYS[index].classList.add('hidden');
           SUB_HEADINGS_BODYS[index].classList.remove('flex');
-          //Display the body based on its index
         } else {
+          // This was the incomplete block!
           SUB_HEADINGS_ICONS[index].classList.add('rotate-180');
           SUB_HEADINGS_BODYS[index].classList.remove('hidden');
           SUB_HEADINGS_BODYS[index].classList.add('flex');
@@ -411,20 +482,84 @@
       });
     });
   }
-  openAndCloseSubHeadings();
-  function showOrHideMegaMenuOnLargeDevice() {
-    NAV_DESKTOP.forEach((nav, jindex) => {
-      nav.addEventListener('mouseenter', () => {
-        MEGA_MENU.classList.replace('lg:opacity-0', 'lg:opacity-100');
-        MEGA_MENU.classList.replace('lg:translate-y-20', 'lg:translate-y-0');
-      });
-      nav.addEventListener('mouseleave', () => {
-        MEGA_MENU.classList.replace('lg:opacity-100', 'lg:opacity-0');
-        MEGA_MENU.classList.replace('lg:translate-y-0', 'lg:translate-y-20');
+  openAndCloseSubHeadings(); // Call the function
+
+  // --- 3. Mobile Tab Switching (Click) ---
+  // --- 3. Mobile Tab Switching (Click) ---
+  function handleMobileMenuContentSwitch() {
+    MOBILE_MENU_TABS.forEach((tab) => {
+      tab.addEventListener('click', () => {
+        // 1. Clear all active states and hide all panels
+        MOBILE_MENU_TABS.forEach((t) => t.classList.remove('border-b', 'font-bold'));
+
+        // 2. Hide all content panels
+        MOBILE_CONTENT_PANELS.forEach((panel) => {
+          panel.style.display = 'none';
+          panel.classList.add('hidden'); // <-- ADD THIS LINE
+        });
+
+        // 3. Get the unified target ID
+        const targetId = tab.getAttribute('data-target-id');
+        const targetPanel = document.getElementById(targetId);
+
+        // 4. Show the target panel using 'flex'
+        if (targetPanel) {
+          targetPanel.classList.remove('hidden'); // <-- ADD THIS LINE
+          targetPanel.style.display = 'flex';
+        }
+
+        // 5. Apply 'active' styling to the clicked tab
+        tab.classList.add('border-b', 'font-bold');
       });
     });
   }
-  showOrHideMegaMenuOnLargeDevice();
+  handleMobileMenuContentSwitch();
+
+  // --- 4. Desktop Mega Menu Show/Hide and Content Switching (Hover) ---
+  function showOrHideMegaMenuOnLargeDevice() {
+    // Function to SHOW the menu (clears pending close)
+    const showMenu = () => {
+      clearTimeout(menuCloseTimeout);
+      MEGA_MENU.classList.replace('lg:opacity-0', 'lg:opacity-100');
+      MEGA_MENU.classList.replace('lg:translate-y-20', 'lg:translate-y-0');
+    };
+
+    // Function to HIDE the menu (starts delay before closing)
+    const hideMenu = () => {
+      menuCloseTimeout = setTimeout(() => {
+        MEGA_MENU.classList.replace('lg:opacity-100', 'lg:opacity-0');
+        MEGA_MENU.classList.replace('lg:translate-y-0', 'lg:translate-y-20');
+      }, 50);
+    };
+
+    NAV_DESKTOP.forEach((nav) => {
+      // 1. MOUSEENTER: Opens menu and switches content
+      nav.addEventListener('mouseenter', () => {
+        showMenu();
+
+        // Content Switching Logic:
+        const targetId = nav.getAttribute('data-target-id');
+        MEGA_MENU_CONTENT_PANELS.forEach((panel) => {
+          panel.style.display = 'none';
+        });
+        const targetPanel = document.getElementById(targetId);
+        if (targetPanel) {
+          // Use 'grid' for desktop layout
+          targetPanel.style.display = 'grid';
+        }
+      });
+
+      // 2. MOUSELEAVE: Starts the close timer
+      nav.addEventListener('mouseleave', hideMenu);
+    });
+
+    // 3. MEGA_MENU MOUSEENTER: Cancel the close timer
+    MEGA_MENU.addEventListener('mouseenter', showMenu);
+
+    // 4. MEGA_MENU MOUSELEAVE: Starts the close timer
+    MEGA_MENU.addEventListener('mouseleave', hideMenu);
+  }
+  showOrHideMegaMenuOnLargeDevice(); // Call the function
 {% endjavascript %}
 
 {% schema %}
