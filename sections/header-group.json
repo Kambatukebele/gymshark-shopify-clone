@@ -50,7 +50,15 @@
     },
     "header": {
       "type": "header",
-      "settings": {}
+      "settings": {
+        "header_navigation": "main-menu",
+        "background_color": "#ffffff",
+        "header_text_color": "#191919",
+        "icons_color": "#1e1e1e",
+        "header_enable_border_bottom": true,
+        "header_mega_menu_bg": "#fafafa",
+        "header_mega_menu_text_color": "#000000"
+      }
     }
   },
   "order": [
