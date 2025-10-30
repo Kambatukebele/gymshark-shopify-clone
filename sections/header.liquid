@@ -54,7 +54,7 @@
           {%- endif -%}
         </a>
         <!-- Search, icons -->
-        <div class="w-1/3 flex justify-end xl:">
+        <div class="w-1/3 flex justify-end">
           <div class="flex justify-end items-center gap-4 xl:gap-6">
             <!-- Search icon -->
             <button
@@ -85,10 +85,10 @@
       </div>
     </div>
   </header>
-  <!-- Mega menu section translate-x-[1300px] -->
+  <!-- Mega menu section -->
   <div
     id="mega-menu"
-    class="w-full z-10 h-fit absolute top-[76px] left-0 translate-x-[1300px] overflow-y-scroll duration-700 ease-in-out lg:translate-x-0 lg:translate-y-20 lg:opacity-0"
+    class="w-full bg-white h-screen z-10 fixed top-0 left-0 translate-x-full overflow-y-auto duration-700 ease-in-out lg:h-fit lg:top-28 lg:translate-x-0 lg:translate-y-20 lg:opacity-0 lg:pointer-events-none "
   >
     <div
       class="container mx-auto px-4 py-8 w-full flex flex-col items-center justify-center gap-8 lg:py-16"
@@ -160,7 +160,7 @@
             {% assign sub_menu = linklists[nav_link.handle] %}
             <div
               id="content-{{ link_handle }}"
-              class="mega-menu-content-panel w-full flex-col flex justify-center items-start gap-4  lg:flex-row"
+              class="mega-menu-content-panel w-full flex flex-col justify-center items-start gap-4 lg:flex-row {% if forloop.first %}{% else %}hidden{% endif %}"
             >
               {%- if sub_menu.links.size > 0 -%}
                 {% for sub_link in sub_menu.links %}
@@ -193,205 +193,85 @@
               {%- endif -%}
             </div>
           {% endfor %}
-
-          {% comment %}
-            <!-- Menu block card -->
-            <div
-              class="w-full flex flex-col justify-center items-start gap-4 lg:row-span-2 lg:justify-start"
-            >
-              <div class="subHeadings w-full flex justify-between items-center">
-                <h6
-                  class="text-sm text-black font-bold lg:uppercase lg:text-[#666666]"
-                >
-                  Trending
-                </h6>
-                <span class="subHeadingsIcons block lg:hidden">
-                  {%- render 'icon-arrow-down', size: '12', color: '#1b1b1b' -%}
-                </span>
-              </div>
-              <div
-                class="subHeadingsBodys hidden flex-col text-[#6e6e6e] gap-2 text-sm lg:flex"
-              >
-                <a href="">Lorem ipsum</a> <a href="">Lorem ipsum</a>
-                <a href="">Lorem ipsum</a> <a href="">Lorem ipsum</a>
-                <a href="">Lorem ipsum</a> <a href="">Lorem ipsum</a>
-                <a href="">Lorem ipsum</a> <a href="">Lorem ipsum</a>
-              </div>
-            </div>
-            <!-- Menu block card -->
-            <div
-              class="w-full flex flex-col justify-center items-start gap-4 lg:row-span-2 lg:justify-start"
-            >
-              <div class="subHeadings w-full flex justify-between items-center">
-                <h6
-                  class="text-sm text-black font-bold lg:uppercase lg:text-[#666666]"
-                >
-                  Trending
-                </h6>
-                <span class="subHeadingsIcons block lg:hidden">
-                  {%- render 'icon-arrow-down', size: '12', color: '#1b1b1b' -%}
-                </span>
-              </div>
-              <div
-                class="subHeadingsBodys hidden flex-col text-[#6e6e6e] gap-2 text-sm lg:flex"
-              >
-                <a href="">Lorem ipsum</a> <a href="">Lorem ipsum</a>
-                <a href="">Lorem ipsum</a> <a href="">Lorem ipsum</a>
-                <a href="">Lorem ipsum</a> <a href="">Lorem ipsum</a>
-                <a href="">Lorem ipsum</a> <a href="">Lorem ipsum</a>
-              </div>
-            </div>
-            <!-- Menu block card -->
-            <div
-              class="w-full flex flex-col justify-center items-start gap-4 lg:justify-start"
-            >
-              <div class="subHeadings w-full flex justify-between items-center">
-                <h6
-                  class="text-sm text-black font-bold lg:uppercase lg:text-[#666666]"
-                >
-                  Trending
-                </h6>
-                <span class="subHeadingsIcons block lg:hidden">
-                  {%- render 'icon-arrow-down', size: '12', color: '#1b1b1b' -%}
-                </span>
-              </div>
-              <div
-                class="subHeadingsBodys hidden flex-col text-[#6e6e6e] gap-2 text-sm lg:flex"
-              >
-                <a href="">Lorem ipsum</a> <a href="">Lorem ipsum</a>
-                <a href="">Lorem ipsum</a> <a href="">Lorem ipsum</a>
-                <a href="">Lorem ipsum</a> <a href="">Lorem ipsum</a>
-                <a href="">Lorem ipsum</a> <a href="">Lorem ipsum</a>
-              </div>
-            </div>
-            <!-- Menu block card -->
-            <div
-              class="w-full flex flex-col justify-center items-start gap-4 lg:justify-start"
-            >
-              <div class="subHeadings w-full flex justify-between items-center">
-                <h6
-                  class="text-sm text-black font-bold lg:uppercase lg:text-[#666666]"
-                >
-                  Trending
-                </h6>
-                <span class="subHeadingsIcons block lg:hidden">
-                  {%- render 'icon-arrow-down', size: '12', color: '#1b1b1b' -%}
-                </span>
-              </div>
-              <div
-                class="subHeadingsBodys hidden flex-col text-[#6e6e6e] gap-2 text-sm lg:flex"
-              >
-                <a href="">Lorem ipsum</a> <a href="">Lorem ipsum</a>
-                <a href="">Lorem ipsum</a> <a href="">Lorem ipsum</a>
-                <a href="">Lorem ipsum</a> <a href="">Lorem ipsum</a>
-                <a href="">Lorem ipsum</a> <a href="">Lorem ipsum</a>
-              </div>
-            </div>
-            <!-- Menu block card -->
-            <div
-              class="w-full flex flex-col justify-center items-start gap-4 lg:justify-start"
-            >
-              <div class="subHeadings w-full flex justify-between items-center">
-                <h6
-                  class="text-sm text-black font-bold lg:uppercase lg:text-[#666666]"
-                >
-                  Trending
-                </h6>
-                <span class="subHeadingsIcons block lg:hidden">
-                  {%- render 'icon-arrow-down', size: '12', color: '#1b1b1b' -%}
-                </span>
-              </div>
-              <div
-                class="subHeadingsBodys hidden flex-col text-[#6e6e6e] gap-2 text-sm lg:flex"
-              >
-                <a href="">Lorem ipsum</a> <a href="">Lorem ipsum</a>
-                <a href="">Lorem ipsum</a> <a href="">Lorem ipsum</a>
-                <a href="">Lorem ipsum</a> <a href="">Lorem ipsum</a>
-                <a href="">Lorem ipsum</a> <a href="">Lorem ipsum</a>
-              </div>
-            </div>
-            <!-- Menu block card -->
-            <div
-              class="w-full flex flex-col justify-center items-start gap-4 lg:col-start-3 row-start-2 lg:justify-start"
-            >
-              <div class="subHeadings w-full flex justify-between items-center">
-                <h6
-                  class="text-sm text-black font-bold lg:uppercase lg:text-[#666666]"
-                >
-                  Trending
-                </h6>
-                <span class="subHeadingsIcons block lg:hidden">
-                  {%- render 'icon-arrow-down', size: '12', color: '#1b1b1b' -%}
-                </span>
-              </div>
-              <div
-                class="subHeadingsBodys hidden flex-col text-[#6e6e6e] gap-2 text-sm lg:flex"
-              >
-                <a href="">Lorem ipsum</a> <a href="">Lorem ipsum</a>
-                <a href="">Lorem ipsum</a> <a href="">Lorem ipsum</a>
-                <a href="">Lorem ipsum</a> <a href="">Lorem ipsum</a>
-                <a href="">Lorem ipsum</a> <a href="">Lorem ipsum</a>
-              </div>
-            </div>
-            <!-- Menu block card -->
-            <div
-              class="w-full flex flex-col justify-center items-start gap-4 lg:col-start-4 row-start-2 lg:justify-start"
-            >
-              <div class="subHeadings w-full flex justify-between items-center">
-                <h6
-                  class="text-sm text-black font-bold lg:uppercase lg:text-[#666666]"
-                >
-                  Trending
-                </h6>
-                <span class="subHeadingsIcons block lg:hidden">
-                  {%- render 'icon-arrow-down', size: '12', color: '#1b1b1b' -%}
-                </span>
-              </div>
-              <div
-                class="subHeadingsBodys hidden flex-col text-[#6e6e6e] gap-2 text-sm lg:flex"
-              >
-                <a href="">Lorem ipsum</a> <a href="">Lorem ipsum</a>
-                <a href="">Lorem ipsum</a> <a href="">Lorem ipsum</a>
-                <a href="">Lorem ipsum</a> <a href="">Lorem ipsum</a>
-                <a href="">Lorem ipsum</a> <a href="">Lorem ipsum</a>
-              </div>
-            </div>
-          {% endcomment %}
         </div>
         <!-- menu images right -->
         <div
-          class="w-full lg:hidden xl:w-1/3 xl:flex xl:flex-col xl:justify-start xl:items-start xl:gap-4"
+          id="mega-menu-images"
+          class="w-full xl:w-1/3 xl:flex xl:flex-col xl:justify-start xl:items-start xl:gap-4"
         >
-          <div class="hidden xl:block w-full">
-            <h6
-              class="text-sm text-black font-bold lg:uppercase lg:text-[#666666]"
-            >
-              Featured
-            </h6>
-          </div>
-          <div
-            class="w-full snap-x snap-mandatory flex overflow-scroll justify-start items-center gap-2 xl:snap-none xl:overflow-hidden xl:flex-col xl:items-start"
-          >
-            {%- for item in (1..2) -%}
-              <!-- image menu card -->
+          {% for nav_link in section.settings.header_navigation.links %}
+            {% assign link_handle = nav_link.title | handle %}
+            {%- comment -%} Check if the nav_link URL contains '/collections/' {%- endcomment -%}
+            {% if nav_link.url contains '/collections/' %}
+              {%- comment -%} Extract collection handle from URL {%- endcomment -%}
+              {% assign collection_handle = nav_link.url | split: '/collections/' | last | split: '/' | first %}
+              {% assign collection = collections[collection_handle] %}
               <div
-                class="border border-[#6e6e6e61] rounded w-[288px] h-[180px] sm:w-[608px] sm:h-[380px] md:w-[758px] md:h-[473px] xl:w-[388px] xl:h-[220px] relative snap-start grow"
+                id="images-{{ link_handle }}"
+                class="mega-menu-images-panel hidden w-full"
               >
-                <div
-                  class="w-[288px] h-[180px] rounded sm:w-[608px] sm:h-[380px] md:w-[758px] md:h-[473px] xl:w-[388px] xl:h-[220px]"
-                >
-                  {{
-                    'product-1'
-                    | placeholder_svg_tag: 'w-full rounded h-full object-center object-cover overflow-hidden'
-                  }}
+                <div class="hidden xl:block w-full">
+                  <h6
+                    class="text-sm text-black font-bold lg:uppercase lg:text-[#666666]"
+                  >
+                    Featured
+                  </h6>
                 </div>
-                <span
-                  class="uppercase absolute bottom-2 left-2 text-xs sm:text-sm"
-                  >Cosy luxe</span
+                <div
+                  class="w-full snap-x snap-mandatory flex overflow-scroll justify-start items-center gap-2 xl:snap-none xl:overflow-hidden xl:flex-col xl:items-start"
                 >
+                  {%- if collection != blank and collection.products.size > 0 -%}
+                    {%- for product in collection.products limit: 2 -%}
+                      <!-- image menu card with real product -->
+                      <div class="border border-[#6e6e6e61] rounded w-[288px] h-[180px] sm:w-[608px] sm:h-[380px] md:w-[758px] md:h-[473px] xl:w-[388px] xl:h-[220px] relative snap-start grow">
+                        <a href="{{ product.url }}" class="block w-full h-full">
+                          <div class="w-[288px] h-[180px] rounded sm:w-[608px] sm:h-[380px] md:w-[758px] md:h-[473px] xl:w-[388px] xl:h-[220px]">
+                            {%- if product.featured_image != blank -%}
+                              <img
+                                src="{{ product.featured_image | image_url: width: 800 }}"
+                                alt="{{ product.title | escape }}"
+                                class="w-full rounded h-full object-center object-cover"
+                                loading="lazy"
+                              >
+                            {%- else -%}
+                              {{
+                                'product-1'
+                                | placeholder_svg_tag: 'w-full rounded h-full object-center object-cover overflow-hidden'
+                              }}
+                            {%- endif -%}
+                          </div>
+                          <span class="uppercase absolute bottom-2 left-2 text-xs sm:text-sm bg-white/80 px-2 py-1 rounded">
+                            {{ product.title | truncate: 20 }}
+                          </span>
+                        </a>
+                      </div>
+                    {%- endfor -%}
+                  {%- else -%}
+                    {%- comment -%} Fallback if collection has no products {%- endcomment -%}
+                    {%- for item in (1..2) -%}
+                      <!-- image menu card -->
+                      <div
+                        class="border border-[#6e6e6e61] rounded w-[288px] h-[180px] sm:w-[608px] sm:h-[380px] md:w-[758px] md:h-[473px] xl:w-[388px] xl:h-[220px] relative snap-start grow"
+                      >
+                        <div
+                          class="w-[288px] h-[180px] rounded sm:w-[608px] sm:h-[380px] md:w-[758px] md:h-[473px] xl:w-[388px] xl:h-[220px]"
+                        >
+                          {{
+                            'product-1'
+                            | placeholder_svg_tag: 'w-full rounded h-full object-center object-cover overflow-hidden'
+                          }}
+                        </div>
+                        <span
+                          class="uppercase absolute bottom-2 left-2 text-xs sm:text-sm"
+                          >Cosy luxe</span
+                        >
+                      </div>
+                    {%- endfor -%}
+                  {%- endif -%}
+                </div>
               </div>
-            {%- endfor -%}
-          </div>
+            {% endif %}
+          {% endfor %}
         </div>
       </div>
     </div>
@@ -409,6 +289,7 @@
   const NAV_DESKTOP = document.querySelectorAll('.nav-desktop');
   const MOBILE_MENU_TABS = document.querySelectorAll('.mobile-menu-tab');
   const MEGA_MENU_CONTENT_PANELS = document.querySelectorAll('.mega-menu-content-panel');
+  const MEGA_MENU_IMAGE_PANEL = document.querySelector('#mega-menu-images');
 
   // Subheading Accordion Toggles
   const SUB_HEADINGS = document.querySelectorAll('.subHeadings');
@@ -418,20 +299,25 @@
   // Global variable to manage the closing delay
   let menuCloseTimeout;
 
-  // --- 1. Mobile Menu Open/Close (No change needed here) ---
+  // --- 1. Mobile Menu Open/Close ---
   function showAndHideMenuOnSmallDevice() {
     function toggleMenuOnSmallDevice(menu_icon, mega_menu, class_one, class_two) {
       if (!menu_icon || !mega_menu) return;
       menu_icon.addEventListener('click', () => {
         mega_menu.classList.replace(class_one, class_two);
+
+        // Show images on mobile when menu opens
+        if (class_two === 'translate-x-0' && MEGA_MENU_IMAGE_PANEL) {
+          MEGA_MENU_IMAGE_PANEL.classList.remove('hidden');
+        }
       });
     }
-    toggleMenuOnSmallDevice(HAMBURGER_MENU, MEGA_MENU, 'translate-x-[1300px]', 'translate-x-0');
-    toggleMenuOnSmallDevice(CLOSE_MENU, MEGA_MENU, 'translate-x-0', 'translate-x-[1300px]');
+    toggleMenuOnSmallDevice(HAMBURGER_MENU, MEGA_MENU, 'translate-x-full', 'translate-x-0');
+    toggleMenuOnSmallDevice(CLOSE_MENU, MEGA_MENU, 'translate-x-0', 'translate-x-full');
   }
   showAndHideMenuOnSmallDevice();
 
-  // --- 2. Mobile Subheading Accordion (No change needed here) ---
+  // --- 2. Mobile Subheading Accordion ---
   function openAndCloseSubHeadings() {
     SUB_HEADINGS.forEach((sub_heading, index) => {
       sub_heading.addEventListener('click', () => {
@@ -485,18 +371,25 @@
       clearTimeout(menuCloseTimeout);
       MEGA_MENU.classList.replace('lg:opacity-0', 'lg:opacity-100');
       MEGA_MENU.classList.replace('lg:translate-y-20', 'lg:translate-y-0');
+      MEGA_MENU.classList.remove('lg:pointer-events-none');
 
-      // *** FIX: Ensure the non-hovered panel (the default first one) is hidden ***
-      // We rely on the hover event below to show the correct panel.
-      MEGA_MENU_CONTENT_PANELS.forEach((panel) => panel.classList.add('hidden'));
+      // *** FIX: Explicitly SHOW the image panel when the menu opens on XL screens ***
+      if (window.innerWidth >= 1280 && MEGA_MENU_IMAGE_PANEL) {
+        // 1280px is Tailwind's 'xl' breakpoint
+        MEGA_MENU_IMAGE_PANEL.classList.remove('hidden');
+      }
     };
 
     const hideMenu = () => {
       menuCloseTimeout = setTimeout(() => {
         MEGA_MENU.classList.replace('lg:opacity-100', 'lg:opacity-0');
         MEGA_MENU.classList.replace('lg:translate-y-0', 'lg:translate-y-20');
-        // OPTIONAL: Hide all panels when the menu closes completely
-        // MEGA_MENU_CONTENT_PANELS.forEach(panel => panel.classList.add('hidden'));
+        MEGA_MENU.classList.add('lg:pointer-events-none');
+
+        // *** FIX: Explicitly HIDE the image panel when the menu closes on XL screens ***
+        if (window.innerWidth >= 1280 && MEGA_MENU_IMAGE_PANEL) {
+          MEGA_MENU_IMAGE_PANEL.classList.add('hidden');
+        }
       }, 50);
     };
 
@@ -510,7 +403,7 @@
 
         // Hide all content panels using 'hidden'
         MEGA_MENU_CONTENT_PANELS.forEach((panel) => {
-          panel.classList.add('hidden'); // This ensures even the default first panel gets hidden
+          panel.classList.add('hidden');
         });
 
         const targetPanel = document.getElementById(targetId);
@@ -532,6 +425,22 @@
     MEGA_MENU.addEventListener('mouseleave', hideMenu);
   }
   showOrHideMegaMenuOnLargeDevice();
+
+  // --- 5. Initialize image panel visibility on load ---
+  function initializeImagePanelVisibility() {
+    if (!MEGA_MENU_IMAGE_PANEL) return;
+
+    // Hide images on desktop (xl) by default, show on mobile
+    if (window.innerWidth >= 1280) {
+      MEGA_MENU_IMAGE_PANEL.classList.add('hidden');
+    } else {
+      MEGA_MENU_IMAGE_PANEL.classList.remove('hidden');
+    }
+  }
+  initializeImagePanelVisibility();
+
+  // Re-initialize on window resize
+  window.addEventListener('resize', initializeImagePanelVisibility);
 {% endjavascript %}
 
 {% schema %}
