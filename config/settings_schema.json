@@ -51,12 +51,12 @@
       {
         "type": "range",
         "id": "logo_width",
-        "min": 160,
+        "min": 50,
         "max": 200,
         "label": "Logo size",
-        "step": 1,
+        "step": 10,
         "unit": "px",
-        "default": 190,
+        "default": 50,
         "info": "Logo size"
       },
       {
