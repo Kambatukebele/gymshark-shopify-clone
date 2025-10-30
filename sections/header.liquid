@@ -227,12 +227,14 @@
                         <a href="{{ product.url }}" class="block w-full h-full">
                           <div class="w-[288px] h-[180px] rounded sm:w-[608px] sm:h-[380px] md:w-[758px] md:h-[473px] xl:w-[388px] xl:h-[220px]">
                             {%- if product.featured_image != blank -%}
-                              <img
-                                src="{{ product.featured_image | image_url: width: 800 }}"
-                                alt="{{ product.title | escape }}"
-                                class="w-full rounded h-full object-center object-cover"
-                                loading="lazy"
-                              >
+                              {{
+                                product.featured_image
+                                | image_url: width: 800
+                                | image_tag:
+                                  class: 'w-full rounded h-full object-center object-cover',
+                                  alt: product.title
+                                | escape
+                              }}
                             {%- else -%}
                               {{
                                 'product-1'
