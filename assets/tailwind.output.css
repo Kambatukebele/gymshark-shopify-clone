@@ -308,6 +308,9 @@
   .w-full {
     width: 100%;
   }
+  .max-w-full {
+    max-width: 100%;
+  }
   .flex-grow {
     flex-grow: 1;
   }

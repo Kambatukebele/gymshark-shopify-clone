@@ -3,7 +3,8 @@
   class="w-full relative"
 >
   <header
-    class="w-full h-[76px] flex justify-center items-center border border-gray-100"
+    style="background-color: {{ section.settings.background_color }}; color: {{ section.settings.header_text_color }}"
+    class="w-full h-[76px] flex justify-center items-center {% if section.settings.header_enable_border_bottom %} border border-gray-100 {% endif %}"
   >
     <div class="container mx-auto px-4">
       <div class="w-full flex justify-between items-center">
@@ -12,12 +13,12 @@
           <div class="w-20 flex justify-between items-center lg:hidden">
             <!-- Hamburger Menu -->
             <span id="hamburger-menu" class="block">
-              {% render 'icon-hamburger', size: '28', color: '#1b1b1b' %}
+              {% render 'icon-hamburger', size: '28', color: section.settings.icons_color %}
             </span>
             <!-- Search icon -->
             <!-- Search icon -->
             <button class="block">
-              {% render 'icon-search', size: '20', color: '#1b1b1b' %}
+              {% render 'icon-search', size: '20', color: section.settings.icons_color %}
               <span class="hidden">What are you looking for today...</span>
             </button>
           </div>
@@ -60,7 +61,7 @@
             <button
               class="hidden lg:flex justify-center items-center cursor-pointer rounded-[40px] py-3 px-4 bg-[#F5F5F5] gap-2"
             >
-              <span class="block">{% render 'icon-search', size: '20', color: '#1b1b1b' %}</span>
+              <span class="block">{% render 'icon-search', size: '20', color: section.settings.icons_color %}</span>
               <span class="hidden 2xl:block text-sm text-[#6e6e6e]">What are you looking for today...</span>
             </button>
             <!-- icons -->
@@ -69,15 +70,15 @@
             >
               <!-- heart icon -->
               <span class="hidden lg:block cursor-pointer">
-                {%- render 'icon-heart', size: '20', color: '#1b1b1b' -%}
+                {%- render 'icon-heart', size: '20', color: section.settings.icons_color -%}
               </span>
               <!-- user icon -->
               <span class="cursor-pointer">
-                {% render 'icon-user', size: '20', color: '#1b1b1b' %}
+                {% render 'icon-user', size: '20', color: section.settings.icons_color %}
               </span>
               <!-- cart icon -->
               <span class="cursor-pointer">
-                {% render 'icon-cart', size: '20', color: '#1b1b1b' %}
+                {% render 'icon-cart', size: '20', color: section.settings.icons_color %}
               </span>
             </div>
           </div>
@@ -87,8 +88,9 @@
   </header>
   <!-- Mega menu section -->
   <div
+    style="background-color:{{ section.settings.header_mega_menu_bg }}; color: {{ section.settings.header_mega_menu_text_color }}"
     id="mega-menu"
-    class="w-full bg-white h-screen z-10 fixed top-0 left-0 translate-x-full overflow-y-auto duration-700 ease-in-out lg:h-fit lg:top-28 lg:translate-x-0 lg:translate-y-20 lg:opacity-0 lg:pointer-events-none "
+    class="w-full h-screen z-10 fixed top-0 left-0 translate-x-full overflow-y-auto duration-700 ease-in-out lg:h-fit lg:top-28 lg:translate-x-0 lg:translate-y-20 lg:opacity-0 lg:pointer-events-none "
   >
     <div
       class="container mx-auto px-4 py-8 w-full flex flex-col items-center justify-center gap-8 lg:py-16"
@@ -104,7 +106,7 @@
           </span>
           <!-- heart icon -->
           <span class="block">
-            {% render 'icon-heart', size: '20', color: '#1b1b1b' %}
+            {% render 'icon-heart', size: '20', color: section.settings.icons_color %}
           </span>
         </div>
         <!-- Search icon -->
@@ -174,7 +176,7 @@
                         {{ sub_link.title }}
                       </h6>
                       <span class="subHeadingsIcons block lg:hidden">
-                        {%- render 'icon-arrow-down', size: '12', color: '#1b1b1b' -%}
+                        {%- render 'icon-arrow-down', size: '12', color: section.settings.icons_color -%}
                       </span>
                     </div>
 
@@ -454,8 +456,72 @@
   "tag": "header",
   "settings": [
     { "type": "header", "content": "Navigation" },
-    { "type": "link_list", "id": "header_navigation", "label": "Menu navigation", "default": "main-menu" }
+    {
+      "type": "link_list",
+      "id": "header_navigation",
+      "label": "Menu navigation",
+      "default": "main-menu"
+    },
+    { "type": "header", "content": "Background color and text color" },
+    {
+      "type": "color",
+      "id": "background_color",
+      "label": "Background color",
+      "default": "#ffffff"
+    },
+    {
+      "type": "color",
+      "id": "header_text_color",
+      "label": "Text color",
+      "default": "#000000"
+    },
+    {
+      "type": "color",
+      "id": "icons_color",
+      "label": "Icons color",
+      "default": "#000000"
+    },
+    {
+      "type": "header",
+      "content": "Allow border"
+    },
+    {
+      "type": "checkbox",
+      "id": "header_enable_border_bottom",
+      "label": "Enable Border bottom colom",
+      "default": true
+    },
+    {
+      "type": "header",
+      "content": "Mega menu colors"
+    },
+    {
+      "type": "color",
+      "id": "header_mega_menu_bg",
+      "label": "Mega menu background color",
+      "info": "#ffffff"
+    },
+    {
+      "type": "color",
+      "id": "header_mega_menu_text_color",
+      "label": "Mega menu text color",
+      "default": "#000000"
+    }
   ],
-  "presets": [{ "name": "Header", "settings": { "header_navigation": "main-menu" }, "blocks": [] }]
+  "presets": [
+    {
+      "name": "Header",
+      "settings": {
+        "header_navigation": "main-menu",
+        "background_color": "#ffffff",
+        "header_text_color": "#000000",
+        "icons_color": "#000000",
+        "header_enable_border_bottom": true,
+        "header_mega_menu_bg": "#ffffff",
+        "header_mega_menu_text_color": "#000000"
+      },
+      "blocks": []
+    }
+  ]
 }
 {% endschema %}
