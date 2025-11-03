@@ -1,0 +1,266 @@
+<section class="w-full h-fit ">
+  <!-- Image/video background -->
+  <div class="w-full h-[670px] overflow-hidden border relative">
+    <!-- Images background -->
+    <div>
+      <!-- Images small device -->
+      {{
+        'product-1'
+        | placeholder_svg_tag: 'w-full h-full object-center object-cover block overflow-hidden md:hidden'
+      }}
+      <!-- Images large device -->
+      {{
+        'lifestyle-2'
+        | placeholder_svg_tag: 'hidden w-full h-full object-center object-cover block overflow-hidden md:block'
+      }}
+    </div>
+    <!-- video background -->
+    <div></div>
+    <!-- Text -->
+    <div class="absolute inset-4 flex items-end">
+      <div class="container mx-auto px-4 pb-5 ">
+        <div class="flex flex-col justify-center items-start gap-3 bg-green-700 px-4 py-8 w-fit ">
+          <h1 class="text-lg font-bold lg:text-2xl">New in: Cosy luxe x soft sculpt</h1>
+          <p class="text-sm font-normal">All turning heads in burgundy, this season's hottest hue.</p>
+          <div class="flex flex-wrap gap-2">
+            <button class="text-sm font-medium px-6 py-3 border rounded-full">
+              <a>Shop new in</a>
+            </button>
+            <button class="text-sm font-medium px-6 py-3 border rounded-full">
+              <a>burgundy sets</a>
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Hero",
+  "class": "hero",
+  "tag": "section",
+  "settings": [
+    {
+      "type": "header",
+      "content": "Images and video background",
+      "info": "You can choose to add video or images as background",
+      "visible_if": "{{ section.settings.hero_enable_video == false }}"
+    },
+    {
+      "type": "paragraph",
+      "content": "Add images for your background",
+      "visible_if": "{{ section.settings.hero_enable_video == false }}"
+    },
+    {
+      "type": "image_picker",
+      "id": "hero_small_bg",
+      "label": "Mobile Background image",
+      "info": "Add your mobile background image",
+      "visible_if": "{{ section.settings.hero_enable_video == false }}"
+    },
+    {
+      "type": "image_picker",
+      "id": "hero_large_bg",
+      "label": "Desktop Background image",
+      "info": "Add your desktop background image",
+      "visible_if": "{{ section.settings.hero_enable_video == false }}"
+    },
+    {
+      "type": "checkbox",
+      "id": "hero_enable_video",
+      "label": "Enable video?",
+      "default": false,
+      "info": "If this is set to true, then you can only add the video not the image"
+    },
+    {
+      "type": "paragraph",
+      "content": "Upload a video or past your video link url",
+      "visible_if": "{{ section.settings.hero_enable_video == true }}"
+    },
+
+    {
+      "type": "video",
+      "id": "hero_video_bg",
+      "label": "Video background",
+      "info": "Upload your video",
+      "visible_if": "{{ section.settings.hero_enable_video_url == false }}"
+    },
+    {
+      "type": "checkbox",
+      "id": "hero_enable_video_url",
+      "label": "Enable video url instead?",
+      "default": false,
+      "info": "If this is set to true, then you can only add the video link"
+    },
+    {
+      "type": "video_url",
+      "id": "hero_video_url_bg",
+      "label": "Past your video link",
+      "accept": ["vimeo", "youtube"],
+      "placeholder": "Past your link here",
+      "info": "Upload your video",
+      "visible_if": "{{ section.settings.hero_enable_video_url == true }}"
+    },
+    {
+      "type": "header",
+      "content": "Text block"
+    },
+    {
+      "type": "color",
+      "id": "hero_text_block_color",
+      "label": "Texts color",
+      "default": "#000000"
+    },
+    {
+      "type": "checkbox",
+      "id": "enable_text_block_bg_color",
+      "label": "Enable Text block background color",
+      "default": true
+    },
+    {
+      "type": "header",
+      "content": "Text block background color",
+      "visible_if": "{{ section.settings.enable_text_block_bg_color == true }}"
+    },
+    {
+      "type": "color",
+      "id": "text_block_bg",
+      "label": "Text block background color",
+      "default": "#00ffffff",
+      "visible_if": "{{ section.settings.enable_text_block_bg_color == true }}"
+    },
+    {
+      "type": "select",
+      "id": "text_block_radius",
+      "label": "Border radius",
+      "options": [
+        {
+          "label": "None",
+          "value": "rounded-none"
+        },
+        {
+          "label": "4px",
+          "value": "rounded-sm"
+        },
+        {
+          "label": "6px",
+          "value": "rounded-md"
+        },
+        {
+          "label": "8px",
+          "value": "rounded-lg"
+        }
+      ],
+      "default": "rounded-none",
+      "visible_if": "{{ section.settings.enable_text_block_bg_color == true }}"
+    }
+  ],
+  "blocks": [
+    {
+      "name": "Title",
+      "type": "title",
+      "limit": 1,
+      "settings": [
+        {
+          "type": "header",
+          "content": "Title"
+        },
+        {
+          "type": "text",
+          "id": "hero_block_title",
+          "label": "Title",
+          "default": "I am a title",
+          "placeholder": "Enter your title",
+          "info": "The hero title"
+        }
+      ]
+    },
+    {
+      "name": "Description",
+      "type": "description",
+      "limit": 1,
+      "settings": [
+        {
+          "type": "header",
+          "content": "Hero Description"
+        },
+        {
+          "type": "richtext",
+          "id": "hero_block_description",
+          "label": "Description"
+        }
+      ]
+    },
+    {
+      "name": "Button",
+      "type": "button",
+      "limit": 2,
+      "settings": [
+        {
+          "type": "header",
+          "content": "Button settings"
+        },
+        {
+          "type": "text",
+          "id": "btn_block_text",
+          "label": "Button text",
+          "default": "Shop now",
+          "placeholder": "Enter your button text"
+        },
+        {
+          "type": "url",
+          "id": "btn_block_url",
+          "label": "Button link"
+        },
+        {
+          "type": "color",
+          "id": "btn_block_bg",
+          "label": "Button background color",
+          "default": "#000000"
+        },
+        {
+          "type": "color",
+          "id": "btn_block_text_color",
+          "label": "Button text color",
+          "default": "#ffffff"
+        }
+      ]
+    }
+  ],
+  "disabled_on": {
+    "groups": ["header", "footer"]
+  },
+  "presets": [
+    {
+      "name": "Hero",
+      "settings": {
+        "hero_small_bg": "",
+        "hero_large_bg": "",
+        "hero_enable_video": false,
+        "hero_video_bg": "",
+        "hero_video_url_bg": "",
+        "hero_text_block_color": "#000000",
+        "enable_text_block_bg_color": true,
+        "text_block_bg": "#00ffffff",
+        "text_block_radius": "rounded-none"
+      },
+      "blocks": [
+        {
+          "name": "Title",
+          "type": "title"
+        },
+        {
+          "name": "Description",
+          "type": "description"
+        },
+        {
+          "name": "Button",
+          "type": "button"
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}

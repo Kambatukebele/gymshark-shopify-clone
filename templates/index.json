@@ -1,5 +1,10 @@
 {
   "wrapper": "main",
-  "sections": {},
-  "order": []
+  "sections": {
+    "hero": {
+      "type": "hero",
+      "settings": {}
+    }
+  },
+  "order": ["hero"]
 }
