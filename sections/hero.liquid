@@ -1,38 +1,167 @@
-<section class="w-full h-fit ">
-  <!-- Image/video background -->
-  <div class="w-full h-[670px] overflow-hidden border relative">
-    <!-- Images background -->
-    <div>
-      <!-- Images small device -->
-      {{
-        'product-1'
-        | placeholder_svg_tag: 'w-full h-full object-center object-cover block overflow-hidden md:hidden'
-      }}
-      <!-- Images large device -->
-      {{
-        'lifestyle-2'
-        | placeholder_svg_tag: 'hidden w-full h-full object-center object-cover block overflow-hidden md:block'
-      }}
+<section id="hero--{{ section.id }}" style="color: {{ section.settings.hero_text_block_color }}" class="w-full h-fit ">
+  <!-- Image/video background and text block -->
+  <div class="w-full h-screen lg:h-[75vh] overflow-hidden relative ">
+    <!-- Images/video background -->
+    <div class="w-full h-full">
+      {% comment %}
+        --> check if hero_enable_video is true
+        --> if true, it will display video setting
+        --> if false, it will display images larger and smaller
+      {% endcomment %}
+      {%- if section.settings.hero_enable_video != true -%}
+        <!-- Images small device -->
+        {%- if section.settings.hero_small_bg != blank -%}
+          {{
+            section.settings.hero_small_bg
+            | image_url: width: '300', height: '670'
+            | image_tag: class: 'w-full h-full object-center object-cover overflow-hidden md:hidden'
+          }}
+        {%- else -%}
+          {{ 'product-1' | placeholder_svg_tag: 'w-full h-full object-center object-cover overflow-hidden md:hidden' }}
+        {%- endif -%}
+
+        <!-- Images large device -->
+        {%- if section.settings.hero_large_bg != blank -%}
+          {{
+            section.settings.hero_large_bg
+            | image_url: width: 1920, height: 1080
+            | image_tag: class: 'hidden md:block w-full h-full object-center object-cover'
+          }}
+        {%- else -%}
+          {{ 'lifestyle-2' | placeholder_svg_tag: 'hidden md:block w-full h-full object-center object-cover' }}
+        {%- endif -%}
+      {%- else -%}
+        {% comment %}
+          --> check if hero_enable_video_url is true
+          --> if true, it will display video url setting
+          --> if false, it will display video
+        {% endcomment %}
+        {%- if section.settings.hero_enable_video_url != true -%}
+          <!-- video background -->
+          {%- if section.settings.hero_video_bg != blank -%}
+            {{
+              section.settings.hero_video_bg
+              | video_tag:
+                autoplay: true,
+                loop: true,
+                muted: true,
+                controls: false,
+                class: 'absolute inset-0 w-full h-full object-cover'
+            }}
+          {% else %}
+            <video
+              playsinline="playsinline"
+              loop="loop"
+              autoplay="autoplay"
+              muted="muted"
+              class="absolute inset-0 w-full h-full object-cover"
+            >
+              <source src="{{ 'video_placeholder.mp4' | asset_url }}" type="video/mp4">
+              <source src="{{ 'video_placeholder.mp4' | asset_url }}" type="video/ogg">
+              Your browser does not support the video tag.
+            </video>
+          {%- endif -%}
+        {%- else -%}
+          <!-- video url background -->
+          {% if section.settings.hero_video_url_bg != blank %}
+            {%- assign id = section.settings.hero_video_url_bg.id -%}
+            {%- assign type = section.settings.hero_video_url_bg.type -%}
+            <iframe
+              class="absolute inset-0 w-full h-full"
+              width="560"
+              height="315"
+              src="https://www.{{- type -}}.com/embed/{{ id }}?autoplay=1&mute=1&controls=0&loop=1"
+              title="YouTube video player"
+              frameborder="0"
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture;"
+              referrerpolicy="strict-origin-when-cross-origin"
+              allowfullscreen
+            ></iframe>
+          {% else %}
+            <iframe
+              class="absolute inset-0 w-full h-full"
+              src="https://www.youtube.com/embed/EngW7tLk6R8?si=GpthpJY7t6_UszVN&amp;controls=0"
+              title="YouTube video player"
+              frameborder="0"
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture;"
+              referrerpolicy="strict-origin-when-cross-origin"
+              allowfullscreen
+            ></iframe>
+          {%- endif -%}
+        {%- endif -%}
+      {%- endif -%}
     </div>
-    <!-- video background -->
-    <div></div>
     <!-- Text -->
-    <div class="absolute inset-4 flex items-end">
-      <div class="container mx-auto px-4 pb-5 ">
-        <div class="flex flex-col justify-center items-start gap-3 bg-green-700 px-4 py-8 w-fit ">
-          <h1 class="text-lg font-bold lg:text-2xl">New in: Cosy luxe x soft sculpt</h1>
-          <p class="text-sm font-normal">All turning heads in burgundy, this season's hottest hue.</p>
-          <div class="flex flex-wrap gap-2">
-            <button class="text-sm font-medium px-6 py-3 border rounded-full">
-              <a>Shop new in</a>
-            </button>
-            <button class="text-sm font-medium px-6 py-3 border rounded-full">
-              <a>burgundy sets</a>
-            </button>
+    {%- if section.blocks.size != 0 -%}
+      <div
+        class="absolute inset-0 flex items-end"
+      >
+        <div class="container mx-auto px-4 py-5">
+          <div
+            style="{%- if section.settings.enable_text_block_bg_color -%} background-image: {{ section.settings.text_block_bg }}{%- endif -%}"
+            class="flex flex-col justify-center items-start gap-3 px-4 py-8 max-w-xl {{ section.settings.text_block_radius }}"
+          >
+            {%- for block in section.blocks -%}
+              {%- case block.type -%}
+                {%- when 'title' -%}
+                  <h1 class="{{ block.settings.hero_text_transform }} text-lg font-bold lg:text-2xl">
+                    {%- if block.settings.hero_block_title != blank -%}
+                      {{ block.settings.hero_block_title }}
+                    {% else %}
+                      Lorem ipsum dolor sit amet consectetur adipiscing
+                    {%- endif -%}
+                  </h1>
+                {%- when 'description' -%}
+                  <p class="text-sm font-normal">
+                    {%- if block.settings.hero_block_description != blank -%}
+                      {{ block.settings.hero_block_description }}
+                    {%- else -%}
+                      Lorem ipsum dolor sit amet consectetur adipiscing elit, sodales class diam aptent mi proin
+                      euismod, malesuada tempus lobortis suscipit hac magnis
+                    {%- endif -%}
+                  </p>
+              {%- endcase -%}
+            {%- endfor -%}
+            <div class="flex flex-wrap gap-2">
+              {%- for block in section.blocks -%}
+                {%- case block.type -%}
+                  {%- when 'button' -%}
+                    <button
+                      style="background-color: {{ block.settings.btn_block_bg }}; color: {{ block.settings.btn_block_text_color }}"
+                      class="text-sm font-medium px-6 py-3 rounded-full cursor-pointer"
+                    >
+                      <a href="{{ block.settings.btn_block_url }}" class="{{ block.settings.hero_btn_text_transform }}">
+                        {%- if block.settings.btn_block_text -%}
+                          {{ block.settings.btn_block_text }}
+                        {% else %}
+                          Shop now
+                        {%- endif -%}
+                      </a>
+                    </button>
+                {%- endcase -%}
+              {%- endfor -%}
+            </div>
           </div>
         </div>
       </div>
-    </div>
+    {%- else -%}
+      <div class="absolute inset-4 flex items-end">
+        <div class="container mx-auto px-4 py-5 ">
+          <div class="flex flex-col justify-center items-start gap-3 bg-white px-4 py-8 max-w-xl">
+            <h1 class="text-lg font-bold lg:text-2xl uppercase">New in: Cosy luxe x soft sculpt</h1>
+            <p class="text-sm font-normal">All turning heads in burgundy, this season's hottest hue.</p>
+            <div class="flex flex-wrap gap-2">
+              <button class="text-sm font-medium px-6 py-3 border rounded-full cursor-pointer">
+                <a class="uppercase">Shop new in</a>
+              </button>
+              <button class="text-sm font-medium px-6 py-3 border rounded-full cursor-pointer">
+                <a class="uppercase">burgundy sets</a>
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    {%- endif -%}
   </div>
 </section>
 
@@ -125,10 +254,9 @@
       "visible_if": "{{ section.settings.enable_text_block_bg_color == true }}"
     },
     {
-      "type": "color",
+      "type": "color_background",
       "id": "text_block_bg",
       "label": "Text block background color",
-      "default": "#00ffffff",
       "visible_if": "{{ section.settings.enable_text_block_bg_color == true }}"
     },
     {
@@ -174,6 +302,26 @@
           "default": "I am a title",
           "placeholder": "Enter your title",
           "info": "The hero title"
+        },
+        {
+          "type": "select",
+          "id": "hero_text_transform",
+          "label": "Text transform",
+          "options": [
+            {
+              "label": "Normal",
+              "value": "normal-case"
+            },
+            {
+              "label": "Uppercase",
+              "value": "uppercase"
+            },
+            {
+              "label": "Capitalize",
+              "value": "capitalize"
+            }
+          ],
+          "default": "uppercase"
         }
       ]
     },
@@ -225,6 +373,26 @@
           "id": "btn_block_text_color",
           "label": "Button text color",
           "default": "#ffffff"
+        },
+        {
+          "type": "select",
+          "id": "hero_btn_text_transform",
+          "label": "Button Text transform",
+          "options": [
+            {
+              "label": "Normal",
+              "value": "normal-case"
+            },
+            {
+              "label": "Uppercase",
+              "value": "uppercase"
+            },
+            {
+              "label": "Capitalize",
+              "value": "capitalize"
+            }
+          ],
+          "default": "uppercase"
         }
       ]
     }
