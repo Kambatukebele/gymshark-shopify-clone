@@ -1,0 +1,360 @@
+<section id="featured-product--{{ section.id }}" class="w-full h-fit {{ section.settings.section_padding }}">
+  <div class="container mx-auto px-4 py-10">
+    <div class="w-full flex flex-col justify-center items-center gap-4">
+      <!-- Text and icons -->
+      <div class="w-full flex flex-col justify-center items-start gap-2">
+        <div class="w-full">
+          <h3 class="text-xs uppercase font-semibold w-full text-gray-800 lg:text-base">
+            {%- if section.settings.eyebrow_label -%}
+              {{ section.settings.eyebrow_label }}
+            {%- endif -%}
+          </h3>
+        </div>
+        <div class="w-full lg:flex lg:justify-between lg:items-center">
+          <div class="w-full flex justify-between items-center lg:justify-start lg:gap-8">
+            <h2 class="text-xl uppercase font-extrabold lg:text-2xl">
+              {%- if section.settings.heading -%}
+                {{ section.settings.heading }}
+              {%- endif -%}
+            </h2>
+            <a class="block text-base capitalize font-semibold underline" href="{{ section.settings.view_all_link }}">
+              {%- if section.settings.view_all_label -%}
+                {{ section.settings.view_all_label }}
+              {%- endif -%}
+            </a>
+          </div>
+          <!-- Icons -->
+          <div class="hidden lg:flex gap-4">
+            <span
+              id="scroll-left"
+              class="arrow-btn w-8 h-8 rounded-full flex justify-center items-center rotate-180 cursor-pointer bg-gray-200 transition-colors duration-300 pointer-events-none opacity-60"
+              data-active-color="{{- section.settings.arrow_bg_inactive -}}"
+              data-inactive-color="{{- section.settings.arrow_icon_inactive -}}"
+            >
+              {% render 'icon-chevron-right', size: '20', color: '#000000' %}
+            </span>
+            <span
+              id="scroll-right"
+              class="arrow-btn w-8 h-8 rounded-full flex justify-center items-center cursor-pointer bg-black transition-colors duration-300"
+              data-active-color="{{- section.settings.arrow_icon_active -}}"
+              data-inactive-color="{{- section.settings.arrow_bg_active -}}"
+            >
+              {% render 'icon-chevron-right', size: '20', color: '#ffffff' %}
+            </span>
+          </div>
+        </div>
+      </div>
+      {%- if section.settings.product_list != blank -%}
+        <div
+          id="featured-scroll-{{ section.id }}"
+          class="w-full overflow-x-scroll hide-scrollbar flex snap-x snap-mandatory"
+        >
+          {%- for product in section.settings.product_list -%}
+            {% render 'product-card',
+              border_color: '',
+              image_default: product.featured_image,
+              image_hover: product.images[1],
+              show_badge: section.settings.show_badge,
+              badge_background: section.settings.badge_background,
+              badge_color: section.settings.badge_color,
+              text_color: section.settings.text_color,
+              text: product.title,
+              subtext_color: section.settings.subtext_color,
+              subtext_one: product.type,
+              subtext_two: product.vendor,
+              price: product.price,
+              variants: product.variants,
+              url: product.url
+            %}
+          {%- endfor -%}
+        </div>
+      {%- else -%}
+        <div
+          id="featured-scroll-{{ section.id }}"
+          class="w-full overflow-x-scroll hide-scrollbar flex snap-x snap-mandatory"
+        >
+          {%- for item in (1..12) -%}
+            <!-- Product card -->
+            <div
+              style="border: 1px solid {{ section.settings.border_color }}"
+              class="w-[256px] snap-start shrink-0 mr-4 sm:w-lg md:w-[171px] lg:w-[225px] xl:w-[289px] 2xl:w-[424px]"
+            >
+              <!-- Product image -->
+              <div class="relative w-full group">
+                <!-- Default image -->
+                <div class="w-full h-80 sm:h-[640px] md:h-[213px] lg:h-[281px] xl:h-[361px] 2xl:h-[542px] transition-opacity duration-300 group-hover:opacity-0">
+                  {{ 'product-1' | placeholder_svg_tag: 'w-full h-full object-cover object-center' }}
+                </div>
+                <!-- Hover image -->
+                <div class="absolute top-0 left-0 w-full h-80 sm:h-[640px] md:h-[213px] lg:h-[281px] xl:h-[361px] 2xl:h-[542px] opacity-0 transition-opacity duration-300 group-hover:opacity-100">
+                  {{ 'product-2' | placeholder_svg_tag: 'w-full h-full object-cover object-center' }}
+                  <!-- Hover sizes -->
+                  <div class="absolute bottom-0 left-0 w-full h-fit bg-gray-100 p-3 flex flex-wrap gap-1 opacity-0 transition-opacity duration-300 group-hover:opacity-100 z-10">
+                    <div
+                      class="border text-base uppercase bg-white border-gray-200 w-[83px] h-[42px] flex justify-center items-center cursor-pointer"
+                    >
+                      XXS
+                    </div>
+                    <div class="border text-base uppercase bg-white border-gray-200 w-[83px] h-[42px] flex justify-center items-center cursor-pointer">
+                      XS
+                    </div>
+                    <div class="border text-base uppercase bg-white border-gray-200 w-[83px] h-[42px] flex justify-center items-center cursor-pointer">
+                      S
+                    </div>
+                    <div class="border text-base uppercase bg-white border-gray-200 w-[83px] h-[42px] flex justify-center items-center cursor-pointer">
+                      M
+                    </div>
+                    <div class="border text-base uppercase bg-white border-gray-200 w-[83px] h-[42px] flex justify-center items-center cursor-pointer">
+                      l
+                    </div>
+                    <div class="border text-base uppercase bg-white border-gray-200 w-[83px] h-[42px] flex justify-center items-center cursor-pointer">
+                      Xl
+                    </div>
+                    <div class="border text-base uppercase bg-white border-gray-200 w-[83px] h-[42px] flex justify-center items-center cursor-pointer">
+                      XXl
+                    </div>
+                  </div>
+                </div>
+
+                <!-- heart icon -->
+                <span
+                  class="absolute top-4 right-4 w-7 h-7 bg-gray-300 flex justify-center items-center rounded-full cursor-pointer"
+                >
+                  {%- render 'icon-heart', size: '16', color: '#000000' -%}
+                </span>
+                <!-- product badge -->
+                {%- if section.settings.show_badge -%}
+                  <span
+                    style="background-color: {{ section.settings.badge_background }}; color: {{ section.settings.badge_color }}"
+                    class="block w-fit px-2 py-1 uppercase text-xs rounded absolute bottom-2 left-2 transition-opacity duration-300 group-hover:opacity-0 font-semibold"
+                  >
+                    Our softest yet
+                  </span>
+                {%- endif -%}
+              </div>
+              <div class="w-full px-2 py-2">
+                <h4 style="color: {{ section.settings.text_color }}" class="text-base font-normal capitalize">
+                  Cosy luxe straight leg joggers
+                </h4>
+                <span
+                  style="color: {{ section.settings.subtext_color }}"
+                  class="block text-sm font-normal text-gray-600"
+                  >Oversized fit</span
+                >
+                <span
+                  style="color: {{ section.settings.subtext_color }}"
+                  class="block text-sm font-normal text-gray-600"
+                  >Rich maroon</span
+                >
+                <div>
+                  <span class="text-base font-medium text-gray-600 hidden">$100</span>
+                  <span class="block text-base font-semibold text-black">$56</span>
+                </div>
+              </div>
+            </div>
+          {%- endfor -%}
+        </div>
+      {%- endif -%}
+      <!-- Product container -->
+    </div>
+  </div>
+</section>
+
+{% stylesheet %}
+  /* Hide scrollbar but keep scroll functionality */
+  .hide-scrollbar {
+    -ms-overflow-style: none; /* IE and Edge */
+    scrollbar-width: none; /* Firefox */
+  }
+  .hide-scrollbar::-webkit-scrollbar {
+    display: none; /* Chrome, Safari, Opera */
+  }
+{% endstylesheet %}
+
+<script>
+  document.addEventListener('DOMContentLoaded', function () {
+    const container = document.querySelector('#featured-scroll-{{ section.id }}');
+    const btnLeft = document.querySelector('#scroll-left');
+    const btnRight = document.querySelector('#scroll-right');
+    const scrollAmount = 320;
+
+    if (!container || !btnLeft || !btnRight) return;
+
+    function setDisabledAppearance(button, disabled) {
+      const svg = button.querySelector('svg');
+      const activeColor = button.dataset.activeColor;
+      const inactiveColor = button.dataset.inactiveColor;
+
+      if (disabled) {
+        button.classList.remove('bg-black');
+        button.classList.add('bg-gray-200', 'pointer-events-none', 'opacity-60');
+        if (svg) svg.setAttribute('stroke', inactiveColor);
+      } else {
+        button.classList.remove('bg-gray-200', 'pointer-events-none', 'opacity-60');
+        button.classList.add('bg-black');
+        if (svg) svg.setAttribute('stroke', activeColor);
+      }
+    }
+
+    function updateButtons() {
+      const maxScrollLeft = container.scrollWidth - container.clientWidth;
+      const current = Math.round(container.scrollLeft);
+
+      if (maxScrollLeft <= 0) {
+        setDisabledAppearance(btnLeft, true);
+        setDisabledAppearance(btnRight, true);
+        return;
+      }
+
+      if (current <= 0) {
+        setDisabledAppearance(btnLeft, true);
+      } else {
+        setDisabledAppearance(btnLeft, false);
+      }
+
+      if (current >= maxScrollLeft - 2) {
+        setDisabledAppearance(btnRight, true);
+      } else {
+        setDisabledAppearance(btnRight, false);
+      }
+    }
+
+    btnRight.addEventListener('click', () => {
+      container.scrollBy({ left: scrollAmount, behavior: 'smooth' });
+    });
+
+    btnLeft.addEventListener('click', () => {
+      container.scrollBy({ left: -scrollAmount, behavior: 'smooth' });
+    });
+
+    container.addEventListener('scroll', updateButtons, { passive: true });
+    window.addEventListener('resize', () => setTimeout(updateButtons, 100));
+    updateButtons();
+  });
+</script>
+
+{% schema %}
+{
+  "name": "Featured product",
+  "class": "featured_product",
+  "tag": "section",
+  "disabled_on": {
+    "groups": ["header", "footer"]
+  },
+  "settings": [
+    {
+      "type": "product_list",
+      "id": "product_list",
+      "label": "Product",
+      "limit": 24
+    },
+    {
+      "type": "checkbox",
+      "id": "show_hover_image",
+      "label": "Show hover image",
+      "default": true
+    },
+    {
+      "type": "text",
+      "id": "eyebrow_label",
+      "label": "Eyebrow Label",
+      "default": "Womens"
+    },
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Heading",
+      "default": "New in"
+    },
+    {
+      "type": "url",
+      "id": "view_all_link",
+      "label": "View All Link"
+    },
+    {
+      "type": "text",
+      "id": "view_all_label",
+      "label": "View All Label",
+      "default": "View all"
+    },
+    {
+      "type": "color",
+      "id": "arrow_bg_active",
+      "label": "Arrow active background",
+      "default": "#000000"
+    },
+    {
+      "type": "color",
+      "id": "arrow_bg_inactive",
+      "label": "Arrow inactive background",
+      "default": "#E5E5E5"
+    },
+    {
+      "type": "color",
+      "id": "arrow_icon_active",
+      "label": "Arrow icon active",
+      "default": "#FFFFFF"
+    },
+    {
+      "type": "color",
+      "id": "arrow_icon_inactive",
+      "label": "Arrow icon inactive",
+      "default": "#000000"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_badge",
+      "label": "Show product badge",
+      "default": true
+    },
+    {
+      "type": "color",
+      "id": "badge_background",
+      "label": "Badge background",
+      "default": "#E5E5E5"
+    },
+    {
+      "type": "color",
+      "id": "badge_color",
+      "label": "Badge text color",
+      "default": "#000000"
+    },
+    {
+      "type": "color",
+      "id": "text_color",
+      "label": "Text color",
+      "default": "#000000"
+    },
+    {
+      "type": "color",
+      "id": "subtext_color",
+      "label": "Subtext color",
+      "default": "#6B7280"
+    },
+    {
+      "type": "color",
+      "id": "border_color",
+      "label": "Product border color",
+      "default": "#D1D5DB"
+    },
+    {
+      "type": "select",
+      "id": "section_padding",
+      "label": "Section padding",
+      "options": [
+        { "value": "pt-4 pb-4", "label": "Small" },
+        { "value": "pt-8 pb-8", "label": "Medium" },
+        { "value": "pt-12 pb-12", "label": "Large" }
+      ],
+      "default": "pt-8 pb-8"
+    }
+  ],
+  "blocks": [],
+  "presets": [
+    {
+      "name": "Featured product",
+      "settings": {}
+    }
+  ]
+}
+{% endschema %}
