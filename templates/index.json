@@ -65,9 +65,38 @@
         "text_block_bg": "#00000000",
         "text_block_radius": "rounded-none"
       }
+    },
+    "featured_product_4wykEE": {
+      "type": "featured-product",
+      "name": "Featured product",
+      "settings": {
+        "product_list": [
+          "cosy-luxe-hoodie",
+          "cosy-luxe-straight-leg-joggers",
+          "cosy-luxe-sweatshirt",
+          "cosy-luxe-zip-through-hoodie"
+        ],
+        "show_hover_image": true,
+        "eyebrow_label": "Womens",
+        "heading": "New in",
+        "view_all_link": "",
+        "view_all_label": "View all",
+        "arrow_bg_active": "#000000",
+        "arrow_bg_inactive": "#e5e5e5",
+        "arrow_icon_active": "#ffffff",
+        "arrow_icon_inactive": "#000000",
+        "show_badge": true,
+        "badge_background": "#e5e5e5",
+        "badge_color": "#000000",
+        "text_color": "#000000",
+        "subtext_color": "#6b7280",
+        "border_color": "#d1d5db",
+        "section_padding": "pt-8 pb-8"
+      }
     }
   },
   "order": [
-    "hero"
+    "hero",
+    "featured_product_4wykEE"
   ]
 }
