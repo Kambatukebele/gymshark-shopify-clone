@@ -1,0 +1,94 @@
+{% doc %}
+  Renders product card
+
+  @param border_color - {string} card border
+  @param image_default - {string} default image
+  @param image_hover - {string} image on hover
+  @param show_badge - {boolean} show badge, true or false
+  @param badge_background - {string} badge background
+  @param badge_color - {string} badge color text
+  @param text_color - {string} title color
+  @param text - {string} title
+  @param subtext_color - {string} subtext color
+  @param subtext_one - {string} subtext one
+  @param subtext_two - {string} subtext two
+  @param price - {string} price
+  @param variants - {array} variant array
+  @param url - {string} prodruct url
+
+  @example {% render 'product-card', border_color: border_color, image_default: image_default, image_hover: image_hover, show_badge: show_badge, badge_background:badge_background, badge_color:badge_color,text_color:text_color,text:text,subtext_color:subtext_color,subtext_one:subtext_one, subtext_two:subtext_two, price:price %}
+{% enddoc %}
+
+<!-- Product card -->
+
+<a
+  href="{{ url }}"
+  class="w-[256px] block snap-start shrink-0 mr-4 sm:w-lg md:w-[171px] lg:w-[225px] xl:w-[289px] 2xl:w-[424px]"
+>
+  <!-- Product image -->
+  <div class="relative w-full group">
+    <!-- Default image -->
+    <div class="w-full h-80 sm:h-[640px] md:h-[213px] lg:h-[281px] xl:h-[361px] 2xl:h-[542px] transition-opacity duration-300 group-hover:opacity-0">
+      {%- if image_default != blank -%}
+        {{
+          image_default
+          | image_url: width: 300, height: 400
+          | image_tag: class: 'w-full h-full object-cover object-center'
+        }}
+      {% else %}
+        {{ 'product-1' | placeholder_svg_tag: 'w-full h-full object-cover object-center' }}
+      {%- endif -%}
+    </div>
+    <!-- Hover image -->
+    <div class="absolute top-0 left-0 w-full h-80 sm:h-[640px] md:h-[213px] lg:h-[281px] xl:h-[361px] 2xl:h-[542px] opacity-0 transition-opacity duration-300 group-hover:opacity-100">
+      {%- if image_hover != blank -%}
+        {{
+          image_hover
+          | image_url: width: 300, height: 400
+          | image_tag: class: 'w-full h-full object-cover object-center'
+        }}
+      {% else %}
+        {{ 'product-2' | placeholder_svg_tag: 'w-full h-full object-cover object-center' }}
+      {%- endif -%}
+
+      <!-- Hover sizes -->
+      <div class="absolute bottom-0 left-0 w-full h-fit bg-gray-100 p-3 flex flex-wrap gap-1 opacity-0 transition-opacity duration-300 group-hover:opacity-100 z-10">
+        {% for size in variants %}
+          <div class="border text-xs xl:text-base uppercase bg-white border-gray-200 w-10 xl:w-[83px] xl:h-[42px] flex justify-center items-center cursor-pointer">
+            {{ size.title }}
+          </div>
+        {% endfor %}
+      </div>
+    </div>
+
+    <!-- heart icon -->
+    <span
+      class="absolute top-4 right-4 w-7 h-7 bg-gray-300 flex justify-center items-center rounded-full cursor-pointer"
+    >
+      {%- render 'icon-heart', size: '16', color: '#000000' -%}
+    </span>
+    <!-- product badge -->
+    {%- if show_badge -%}
+      <span
+        style="background-color: {{ badge_background }}; color: {{ badge_color }}"
+        class="block w-fit px-2 py-1 uppercase text-xs rounded absolute bottom-2 left-2 transition-opacity duration-300 group-hover:opacity-0 font-semibold"
+      >
+        Our softest yet
+      </span>
+    {%- endif -%}
+  </div>
+  <div class="w-full px-2 py-2">
+    <h4 style="color: {{ text_color }}" class="text-base font-normal capitalize">
+      {{ text }}
+    </h4>
+    <span style="color: {{ subtext_color }}" class="block text-sm font-normal text-gray-600">
+      {{ subtext_one }}
+    </span>
+    <span style="color: {{ subtext_color }}" class="block text-sm font-normal text-gray-600">
+      {{ subtext_two | upcase }}
+    </span>
+    <div>
+      <span class="block text-base font-semibold text-black">{{ price | money }}</span>
+    </div>
+  </div>
+</a>
