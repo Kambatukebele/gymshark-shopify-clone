@@ -71,10 +71,12 @@
       "name": "Featured product",
       "settings": {
         "product_list": [
-          "cosy-luxe-hoodie",
-          "cosy-luxe-straight-leg-joggers",
           "cosy-luxe-sweatshirt",
-          "cosy-luxe-zip-through-hoodie"
+          "cosy-luxe-straight-leg-joggers",
+          "cosy-luxe-hoodie",
+          "cosy-luxe-zip-through-hoodie",
+          "cosy-luxe-cuffed-joggers",
+          "cosy-luxe-zip-through-hoodie-1"
         ],
         "show_hover_image": true,
         "eyebrow_label": "Womens",
@@ -93,10 +95,99 @@
         "border_color": "#d1d5db",
         "section_padding": "pt-8 pb-8"
       }
+    },
+    "hero_fpWQP8": {
+      "type": "hero",
+      "blocks": {
+        "title_xByM4g": {
+          "type": "title",
+          "name": "Title",
+          "settings": {
+            "hero_block_title": "FOR WINTER WORKOUTS",
+            "hero_text_transform": "uppercase"
+          }
+        },
+        "description_LVqh63": {
+          "type": "description",
+          "name": "Description",
+          "settings": {
+            "hero_block_description": "<p>Brand new graphics that match your gym aesthetic. Head down, focus up.</p>"
+          }
+        },
+        "button_7qMFaN": {
+          "type": "button",
+          "name": "Button",
+          "settings": {
+            "btn_block_text": "New in",
+            "btn_block_url": "",
+            "btn_block_bg": "#ffffff",
+            "btn_block_text_color": "#0d0d0d",
+            "hero_btn_text_transform": "uppercase"
+          }
+        },
+        "button_ab84fY": {
+          "type": "button",
+          "settings": {
+            "btn_block_text": "Winter shop",
+            "btn_block_url": "",
+            "btn_block_bg": "#ffffff",
+            "btn_block_text_color": "#0d0d0d",
+            "hero_btn_text_transform": "uppercase"
+          }
+        }
+      },
+      "block_order": [
+        "title_xByM4g",
+        "description_LVqh63",
+        "button_7qMFaN",
+        "button_ab84fY"
+      ],
+      "name": "Hero",
+      "settings": {
+        "hero_enable_video": true,
+        "hero_video_bg": "shopify://files/videos/NOVEMBER_HERO_UNIVERSE_SEASONAL_MALE_1_8x3.mp4",
+        "hero_enable_video_url": false,
+        "hero_video_url_bg": "",
+        "hero_text_block_color": "#eaeaea",
+        "enable_text_block_bg_color": true,
+        "text_block_bg": "#00ffffff",
+        "text_block_radius": "rounded-none"
+      }
+    },
+    "featured_product_dyX9VH": {
+      "type": "featured-product",
+      "name": "Featured product",
+      "settings": {
+        "product_list": [
+          "fade-graphic-crew",
+          "fade-graphic-straight-leg-jogger",
+          "fade-graphic-straight-leg-jogger-1",
+          "fade-graphic-zip-up-hoodie",
+          "fade-graphic-zip-up-hoodie-1"
+        ],
+        "show_hover_image": true,
+        "eyebrow_label": "Mens",
+        "heading": "FOR WINTER WORKOUTS",
+        "view_all_link": "",
+        "view_all_label": "View all",
+        "arrow_bg_active": "#000000",
+        "arrow_bg_inactive": "#e5e5e5",
+        "arrow_icon_active": "#ffffff",
+        "arrow_icon_inactive": "#000000",
+        "show_badge": true,
+        "badge_background": "#e5e5e5",
+        "badge_color": "#000000",
+        "text_color": "#000000",
+        "subtext_color": "#6b7280",
+        "border_color": "#d1d5db",
+        "section_padding": "pt-8 pb-8"
+      }
     }
   },
   "order": [
     "hero",
-    "featured_product_4wykEE"
+    "featured_product_4wykEE",
+    "hero_fpWQP8",
+    "featured_product_dyX9VH"
   ]
 }
