@@ -31,7 +31,7 @@
               data-active-color="{{- section.settings.arrow_bg_inactive -}}"
               data-inactive-color="{{- section.settings.arrow_icon_inactive -}}"
             >
-              {% render 'icon-chevron-right', size: '20', color: '#000000' %}
+              {% render 'icon-chevron-right', size: '20', color: '{{- section.settings.arrow_bg_inactive -}}' %}
             </span>
             <span
               id="scroll-right"
@@ -39,7 +39,7 @@
               data-active-color="{{- section.settings.arrow_icon_active -}}"
               data-inactive-color="{{- section.settings.arrow_bg_active -}}"
             >
-              {% render 'icon-chevron-right', size: '20', color: '#ffffff' %}
+              {% render 'icon-chevron-right', size: '20', color: '{{- section.settings.arrow_icon_active -}}' %}
             </span>
           </div>
         </div>
